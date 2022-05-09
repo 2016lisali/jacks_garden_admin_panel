@@ -2,7 +2,7 @@ import axios from "axios";
 
 // connect to live server
 const BASE_URL = "https://jacks-garden-server.herokuapp.com/api";
-// CONNECT TO LOCAL SERVER 34546
+// CONNECT TO LOCAL SERVER 34546dge
 // const BASE_URL = "https://localhost:5000/api";
 
 const API = axios.create({
