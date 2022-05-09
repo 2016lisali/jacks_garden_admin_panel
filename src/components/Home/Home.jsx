@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { getOrderSummary, getProductAndOrderSummary } from "../../api/api";
 import { SalesChart } from "./SalesChart";
 import StatCard from "./StatCard";
+
 const Home = () => {
   const [salesData, setSalesData] = useState()
   const [statData, setStatData] = useState();
