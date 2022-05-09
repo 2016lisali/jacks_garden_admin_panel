@@ -1,8 +1,8 @@
 import { Button, Image } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 const ProductRow = ({ product, handleDelete }) => {
-  const URL = "http://localhost:5000";
-
+  // const URL = "http://localhost:5000";
+  const URL = "https://jacks-garden-server.herokuapp.com";
   return (
     <tr className='text-center align-middle'>
       <td><Image className="me-3" rounded src={`${URL}${product.productImage}`} style={{ width: "50px", height: "50px" }} /></td>
