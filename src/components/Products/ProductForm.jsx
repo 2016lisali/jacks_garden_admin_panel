@@ -1,0 +1,156 @@
+import { Button, Col, Container, FloatingLabel, Form, Row, Spinner } from "react-bootstrap";
+import { useState } from "react";
+import { createProduct, updateProduct, uploadImg } from "../../api/api.js";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+
+// create form validation schema 
+const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"]
+const schema = yup.object({
+  productName: yup.string().max(50, "The length cannot be over 45").required(),
+  category: yup.string().required(),
+  productDescription: yup.string().max(500).required(),
+  productImage: yup.string(),
+  productImageFile: yup.mixed().nullable().notRequired()
+    .test("FILE_SIZE", "Uploaded file is too big.",
+      value => (value.length === 0 || !value) || (value.length > 0 && value["0"].size <= 2000000)
+    )
+    .test("FILE_FORMAT", "Uploaded file has unsupported format.",
+      value => value.length === 0 || (value.length > 0 && SUPPORTED_FORMATS.includes(value["0"].type))),
+  price: yup.number().required(),
+  quantityInstock: yup.number().integer().required(),
+}).required();
+
+const ProductForm = ({ action, preloadedValues }) => {
+  const [isFetching, setIsFetching] = useState(false);
+  // const [productImageFile, setProductImageFile] = useState();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: preloadedValues
+  });
+
+  const handleCreateProduct = async (data) => {
+    console.log(data);
+    setIsFetching(true)
+    const jsonFormData = JSON.stringify({ ...data, productImage: "/images/" + data.productImageFile["0"].name })
+    const imgform = new FormData();
+    imgform.append("productImage", data.productImageFile["0"])
+    try {
+      await uploadImg(imgform)
+      await createProduct(jsonFormData)
+      setIsFetching(false)
+      navigate("/products")
+      // console.log(result);
+    } catch (error) {
+      console.log(error);
+      alert(error)
+    }
+  }
+  const handleUpdateProduct = async (data) => {
+    console.log(data);
+    setIsFetching(true)
+    const imgform = new FormData();
+    if (data.productImageFile["0"]) {
+      data["productImage"] = "/images/" + data.productImageFile["0"].name
+      imgform.append("productImage", data.productImageFile["0"])
+    }
+    const jsonFormData = JSON.stringify(data)
+    try {
+      data.productImageFile["0"] && await uploadImg(imgform)
+      await updateProduct(jsonFormData)
+      setIsFetching(false)
+      navigate("/products")
+    } catch (error) {
+      setIsFetching(false)
+      alert(error)
+    }
+  }
+  return (
+    <Container fluid='xl' className="d-flex justify-content-center px-0 py-md-3">
+      <Form className="bg-white shadow p-4 rounded w-100" onSubmit={handleSubmit(handleCreateProduct)}>
+        <h2 className="text-center mb-3">{location.pathname.includes("create") ? "Create " : "Update "}Product</h2>
+        <Row className="mb-3">
+          <Col md>
+            <FloatingLabel className="mb-3" label="Product Name">
+              <Form.Control
+                {...register("productName")}
+                placeholder="Product Name"
+              />
+            </FloatingLabel>
+            <p className="text-danger">{errors.productName?.message}</p>
+
+            <FloatingLabel className="mb-3" label="Category">
+              <Form.Select
+                {...register("category")}
+              >
+                <option>Choose the category</option>
+                <option value="indoor">indoor</option>
+                <option value="outdoor">outdoor</option>
+                <option value="fruittree">fruittree</option>
+              </Form.Select>
+            </FloatingLabel>
+            <p className="text-danger">{errors.category?.message}</p>
+            <FloatingLabel className="mb-3" label="Quantity In Stock">
+              <Form.Control
+                min="0"
+                {...register("quantityInstock")}
+                placeholder="Quatity In Stock"
+                name="quantityInstock"
+              />
+            </FloatingLabel>
+            <p className="text-danger">{errors.quantityInstock?.message}</p>
+
+            <FloatingLabel label="Price">
+              <Form.Control
+                type="number"
+                step="0.01"
+                min="0"
+                {...register("price")}
+                placeholder="price"
+              />
+            </FloatingLabel>
+            <p className="text-danger">{errors.price?.message}</p>
+            <Form.Group className="mt-3" >
+              <Form.Control
+                type="file"
+                placeholder="product image"
+                multiple={false}
+                {...register("productImageFile")}
+              />
+            </Form.Group>
+          </Col>
+          <Col md className="pt-3 pt-md-0">
+            <FloatingLabel label="Description" className="h-100">
+              <Form.Control
+                as="textarea"
+                className="h-100"
+                placeholder="product description"
+                {...register("productDescription")}
+              />
+            </FloatingLabel>
+            <p className="text-danger">{errors.productDescription?.message}</p>
+          </Col>
+        </Row>
+        <input
+          className="d-none"
+          {...register("productImage")} />
+        <Button variant="success" type="submit"
+          className={`w-100 mt-3 d-${action === "create" ? "block" : "none"}`} >
+          {isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : 'CREATE'}
+        </Button>
+        <Button variant="success" type="submit"
+          className={`w-100 mt-3 d-${action === "update" ? "block" : "none"}`}
+          onClick={handleSubmit(handleUpdateProduct)}>
+          {isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : 'UPDATE'}
+        </Button>
+      </Form>
+    </Container>
+  )
+}
+
+export default ProductForm;
+// Slow-growing evergreen shrubs, with dense branches, perfect for pot.
