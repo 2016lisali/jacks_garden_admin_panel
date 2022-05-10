@@ -5,7 +5,6 @@ import { getAllOrders, deleteOrderById, getOrderDetails } from '../../api/api';
 import FetchingSpinner from '../FetchingSpinner';
 import { useForm } from "react-hook-form";
 import Pagi from '../Pagi';
-import IsFetchingModal from '../IsFetchingModal';
 
 const Orders = () => {
   const [isFetching, setIsFetching] = useState(false)
@@ -38,7 +37,7 @@ const Orders = () => {
   }
   useEffect(() => {
     const navLink = document.getElementById("orders")
-    navLink.classList.add("active");
+    navLink?.classList.add("active");
     const getOrders = async () => {
       setIsFetching(true)
       try {
@@ -82,7 +81,7 @@ const Orders = () => {
           <span className="search-error position-absolute text-danger">{errors.search && errors.search.message}</span>
         </Form>
       </div>
-      <Table className="shadow-sm mb-5 bg-body rounded text-secondary">
+      <Table className="shadow-sm mb-2 bg-body rounded text-secondary">
         <thead className="bg-warning small text-light">
           <tr className='text-center'>
             <th>ORDER ID</th>
@@ -96,7 +95,7 @@ const Orders = () => {
           {orders?.slice((currentPage - 1) * 10, currentPage * 10).map(order => <OrderRow order={order} key={order.orderId} deleteOrder={deleteOrder} />)}
         </tbody>
       </Table>
-      {isFetching && <IsFetchingModal />}
+      {isFetching && <FetchingSpinner />}
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )

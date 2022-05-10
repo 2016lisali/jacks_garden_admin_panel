@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Container, Form, FloatingLabel, Spinner } from "react-bootstrap";
+import { Button, Container, Form, FloatingLabel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { login } from "../actions/userAction";
 import { useForm } from "react-hook-form";
@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <Container fluid="xl" className="login-container d-flex justify-content-center vh-100 align-items-center">
       {isSuccess ?
-        <SuccessDiv message="Welcome to Jack's Garden Admin Panel." /> :
+        <SuccessDiv message="Welcome to Jack's Garden Admin Panel. Redirecting you to dashboard now." /> :
         <Form className="login-form bg-white shadow rounded-3 py-5 px-3 px-md-4"
           onSubmit={handleSubmit(handleLogin)}>
           <h1 className="text-center text-success fw-bold pt-3">LOG IN</h1>

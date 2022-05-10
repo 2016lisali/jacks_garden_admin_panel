@@ -33,7 +33,9 @@ const Sidebar = ({ display }) => {
         <ListGroup.Item action variant="light" href="/products" className="side-link fw-bolder" id="products">
           <Flower1 />PRODUCTS
         </ListGroup.Item>
-        <ListGroup.Item action variant="light" href="/orders" className="side-link fw-bolder" id="orders"><Receipt />ORDERS</ListGroup.Item>
+        <ListGroup.Item action variant="light" href="/orders" className="side-link fw-bolder" id="orders">
+          <Receipt />ORDERS
+        </ListGroup.Item>
         <ListGroup.Item action variant="light" href="/customers" className="side-link fw-bolder" id="customers_link">
           <PeopleFill />CUSTOMERS
         </ListGroup.Item>

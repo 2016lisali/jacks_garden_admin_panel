@@ -58,17 +58,19 @@ export function SalesChart({ salesData }) {
       {
         label: 'Monthly Sales',
         data: labels.map(item => {
+          let sales = 0;
           for (let d of salesData) {
-            if (d.month == item) {
-              return d.totalAmount / 100
+            if (d.month === item) {
+              sales = d.totalAmount / 100
             }
           }
+          return sales
         }),
         borderColor: '#198754',
         backgroundColor: '#fff',
       }
     ],
   };
-  console.log("salesData", salesData);
+
   return <Line className="rounded-3 shadow bg-white p-4 mx-3 mt-4" options={options} data={data} />;
 }

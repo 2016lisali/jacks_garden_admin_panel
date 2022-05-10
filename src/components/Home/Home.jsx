@@ -8,27 +8,17 @@ const Home = () => {
   const [salesData, setSalesData] = useState()
   const [statData, setStatData] = useState();
   useEffect(() => {
-    const getOrderTotalAmount = async () => {
+    const getData = async () => {
       try {
-        const res = await getOrderSummary()
-        setSalesData(res.data)
-        setStatData({ ...statData, "salesData": res.data })
+        const orderRes = await getOrderSummary()
+        const statRes = await getProductAndOrderSummary();
+        setSalesData(orderRes.data)
+        setStatData({ ...statData, "salesData": orderRes.data, "totalProducts": statRes.data[0].totalProducts, "totalUsers": statRes.data[0].totalUsers })
       } catch (error) {
         alert(error)
       }
     }
-    getOrderTotalAmount()
-  }, [])
-  useEffect(() => {
-    const getProductAndOrderStat = async () => {
-      try {
-        const res = await getProductAndOrderSummary();
-        setStatData({ ...statData, "totalProducts": res.data[0].totalProducts, "totalUsers": res.data[0].totalUsers })
-      } catch (error) {
-        alert(error)
-      }
-    }
-    getProductAndOrderStat()
+    getData()
   }, [])
 
   return (

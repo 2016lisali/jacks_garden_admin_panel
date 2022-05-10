@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { getAllProducts, deleteProductById, getProductBySearch } from '../../api/api';
 import { Button, Form, FormControl, Table } from 'react-bootstrap';
 import ProductRow from './ProductRow';
-// import IsFetchingModal from '../IsFetchingModal';
 import FetchingSpinner from '../FetchingSpinner';
 import { useForm } from "react-hook-form";
 import Pagi from '../Pagi';
@@ -40,13 +39,12 @@ const Products = () => {
   }
 
   useEffect(() => {
-    const navLink = document.getElementById("products")
-    navLink.classList.add("active");
+    // const navLink = document.getElementById("products")
+    // navLink.classList.add("active");
     const getProducts = async () => {
       setIsFetching(true)
       try {
         const res = await getAllProducts()
-        console.log("result", res);
         setPages(Math.ceil(res.data.length / 10))
         setProducts(res.data)
         setIsFetching(false)

@@ -3,8 +3,8 @@ import { Button, FormControl, Form, Table } from 'react-bootstrap';
 import { getAllUsers, deleteUser, getUserBySearch } from '../../api/api';
 import CustomerRow from './CustomerRow';
 import Pagi from '../Pagi';
-import IsFetchingModal from '../IsFetchingModal';
 import { useForm } from "react-hook-form";
+import FetchingSpinner from '../FetchingSpinner';
 
 const Customers = () => {
   const [customers, setCustomers] = useState();
@@ -33,14 +33,17 @@ const Customers = () => {
     }
   }
   useEffect(() => {
-    const navLink = document.getElementById("customers_link")
-    navLink.classList.add("active");
+    // const navLink = document.getElementById("customers_link")
+    // navLink.classList.add("active");
     const getCustomerData = async () => {
+      setIsFetching(true)
       try {
         const result = await getAllUsers()
         setCustomers(result.data)
+        setIsFetching(false)
         setPages(Math.ceil(result.data.length / 10))
       } catch (error) {
+        setIsFetching(false)
         console.log(error);
       }
     }
@@ -92,7 +95,7 @@ const Customers = () => {
           ))}
         </tbody>
       </Table>
-      {isFetching && <IsFetchingModal />}
+      {isFetching && <FetchingSpinner />}
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )
