@@ -33,8 +33,8 @@ const Customers = () => {
     }
   }
   useEffect(() => {
-    // const navLink = document.getElementById("customers_link")
-    // navLink.classList.add("active");
+    const navLink = document.getElementById("customers_link")
+    navLink?.classList.add("active");
     const getCustomerData = async () => {
       setIsFetching(true)
       try {

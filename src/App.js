@@ -14,7 +14,7 @@ function App() {
     <div className="App bg-light">
       <BrowserRouter>
         {isAdmin && <Topbar />}
-        <Container fluid="xxl" className=" d-flex px-0 vh-100">
+        <Container fluid="xl" className=" d-flex px-0 vh-100">
           {isAdmin && <Sidebar display="none" />}
           <div className="d-flex flex-column flex-grow-1 justify-content-between px-md-4">
             <Routes>

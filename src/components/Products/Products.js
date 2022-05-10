@@ -39,8 +39,9 @@ const Products = () => {
   }
 
   useEffect(() => {
-    // const navLink = document.getElementById("products")
-    // navLink.classList.add("active");
+    const navLink = document.getElementById("products")
+    console.log("navLink", navLink);
+    navLink?.classList.add("active");
     const getProducts = async () => {
       setIsFetching(true)
       try {

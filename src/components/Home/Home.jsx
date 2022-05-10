@@ -25,18 +25,21 @@ const Home = () => {
   return (
     <Container fluid="xl" className="home px-4 px-md-0">
       <Row className="top-container mt-4">
-        <Col md={4}>
+        <Col md={4} >
           <StatCard title="Products"
+            bg="bg-success"
             amount={statData?.totalProducts}
             link="/products" />
         </Col>
         <Col md={4}>
           <StatCard title="Orders"
+            bg="bg-warning"
             amount={`$ ${salesData && salesData[salesData?.length - 1]?.totalAmount / 100}`}
             link="/orders" />
         </Col>
         <Col md={4}>
           <StatCard title="Customers"
+            bg="bg-primary"
             amount={statData?.totalUsers}
             link="/customer" />
         </Col>

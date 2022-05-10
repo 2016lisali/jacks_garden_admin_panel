@@ -14,8 +14,9 @@ const schema = yup.object({
     "upper case or lower case letters only, at least 2 letters.").required(),
   email: yup.string().email().required(),
   isAdmin: yup.string().required(),
-  password: yup.string().max(20, "The length cannot be over 25").matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-    `Minimum 8 characters, at least one letter and one number`).required(),
+  password: yup.string().matches(/^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+*!=]).*$/,
+    `Minimum 8 characters, contain at least one uppercase, one lowercase, one number and one symbol
+     from (@#$%^&+*!=)`).required(),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
 }).required();
 
