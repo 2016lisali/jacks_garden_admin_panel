@@ -9,7 +9,7 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
     },
     logout: (state) => {
-      localStorage.removeItem("jg_user");
+      localStorage.removeItem("jg_admin");
       state.currentUser = null;
     }
   }

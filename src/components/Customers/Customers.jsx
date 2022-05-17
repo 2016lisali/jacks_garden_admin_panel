@@ -4,7 +4,8 @@ import { getAllUsers, deleteUser, getUserBySearch } from '../../api/api';
 import CustomerRow from './CustomerRow';
 import Pagi from '../Pagi';
 import { useForm } from "react-hook-form";
-import FetchingSpinner from '../FetchingSpinner';
+// import FetchingSpinner from '../FetchingSpinner';
+import IsFetchingModal from '../IsFetchingModal';
 
 const Customers = () => {
   const [customers, setCustomers] = useState();
@@ -27,7 +28,9 @@ const Customers = () => {
   const handleSearch = async (data) => {
     try {
       const res = await getUserBySearch(data.search, data.search)
+      console.log(res.data);
       res.data && setCustomers(res.data)
+      setPages(Math.ceil(res.data.length / 10))
     } catch (error) {
       alert(error.response.data);
     }
@@ -95,7 +98,7 @@ const Customers = () => {
           ))}
         </tbody>
       </Table>
-      {isFetching && <FetchingSpinner />}
+      {isFetching && <IsFetchingModal />}
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )

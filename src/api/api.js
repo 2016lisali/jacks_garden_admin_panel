@@ -2,8 +2,8 @@ import axios from "axios";
 
 // connect to live server
 const BASE_URL = "https://jacks-garden-server.herokuapp.com/api";
-// CONNECT TO LOCAL SERVER 34546dge
-// const BASE_URL = "https://localhost:5000/api";
+// CONNECT TO LOCAL SERVER
+// const BASE_URL = "http://localhost:5000/api";
 
 const API = axios.create({
   baseURL: BASE_URL,
@@ -11,8 +11,8 @@ const API = axios.create({
 })
 
 API.interceptors.request.use(req => {
-  if (localStorage.getItem('jg_user')) {
-    req.headers.token = `Bearer ${JSON.parse(localStorage.getItem('jg_user')).user.token}`;
+  if (localStorage.getItem('jg_admin')) {
+    req.headers.token = `Bearer ${JSON.parse(localStorage.getItem('jg_admin')).user.token}`;
   }
   return req;
 })

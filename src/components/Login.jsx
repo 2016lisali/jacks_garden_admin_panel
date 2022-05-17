@@ -17,6 +17,7 @@ const Login = () => {
     const formDataJSON = JSON.stringify(data)
     login(formDataJSON, setIsSuccess, dispatch, navigate)
   }
+  console.log(isSuccess);
   return (
     <Container fluid="xl" className="login-container d-flex justify-content-center vh-100 align-items-center">
       {isSuccess ?
@@ -31,7 +32,7 @@ const Login = () => {
               placeholder="Email"
               {...register("email", { required: true })}
             />
-            <p className="text-danger">{errors.email && "Unvalid email"}</p>
+            <p className="text-danger">{errors.email && "Please enter a valid email"}</p>
           </FloatingLabel>
           <FloatingLabel className="mb-3" label="Password">
             <Form.Control

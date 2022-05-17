@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { Button, Form, FormControl, Table } from 'react-bootstrap';
 import OrderRow from './OrderRow';
 import { getAllOrders, deleteOrderById, getOrderDetails } from '../../api/api';
-import FetchingSpinner from '../FetchingSpinner';
+// import FetchingSpinner from '../FetchingSpinner';
 import { useForm } from "react-hook-form";
 import Pagi from '../Pagi';
+import IsFetchingModal from '../IsFetchingModal';
 
 const Orders = () => {
   const [isFetching, setIsFetching] = useState(false)
@@ -27,8 +28,8 @@ const Orders = () => {
     setIsFetching(true)
     try {
       const res = await getOrderDetails(data.search)
-      console.log(res);
       res.data && setOrders([{ ...res.data[0], orderId: data.search }])
+      setPages(Math.ceil(res.data.length / 10))
       setIsFetching(false)
     } catch (error) {
       setIsFetching(false)
@@ -92,10 +93,10 @@ const Orders = () => {
           </tr>
         </thead>
         <tbody>
-          {orders?.slice((currentPage - 1) * 10, currentPage * 10).map(order => <OrderRow order={order} key={order.orderId} deleteOrder={deleteOrder} />)}
+          {orders?.slice((currentPage - 1) * 10, currentPage * 10).map(order => <OrderRow order={order} key={order.orderId} handleDelete={deleteOrder} />)}
         </tbody>
       </Table>
-      {isFetching && <FetchingSpinner />}
+      {isFetching && <IsFetchingModal />}
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )

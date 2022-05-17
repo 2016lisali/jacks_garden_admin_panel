@@ -7,6 +7,7 @@ import { useState } from "react";
 import { createUser, updateUser } from "../../api/api"
 import { FormInput } from "../index"
 
+// validation schema for creating user
 const schema = yup.object({
   firstName: yup.string().max(25, "The length cannot be over 45").matches(/^([a-zA-Z])+$/,
     "upper case or lower case letters only, at least 2 letters.").required(),
@@ -93,4 +94,4 @@ const CustomerForm = ({ action, preloadedValues }) => {
   )
 }
 
-export default CustomerForm
+export default CustomerForm;

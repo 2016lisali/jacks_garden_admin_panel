@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/userReducer";
 
 const Sidebar = ({ display }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('jg_user'))?.user);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('jg_admin'))?.user);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Sidebar = ({ display }) => {
       if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout()
     }
     //????
-    setUser(JSON.parse(localStorage.getItem('jg_user'))?.user)
+    setUser(JSON.parse(localStorage.getItem('jg_admin'))?.user)
     // eslint-disable-next-line
   }, [location])
   const handleLogout = () => {
@@ -27,7 +27,7 @@ const Sidebar = ({ display }) => {
     navigate("/")
   }
   return (
-    <div className={`sidebar d-${display} h100 d-md-flex flex-column bg-white shadow`}>
+    <div className={`sidebar d-${display} d-md-flex flex-column bg-white shadow`}>
       <Link to="/"><Image src={logo} roundedCircle alt="store logo" /></Link>
       <ListGroup variant="flush" as="ul" className="mt-3 flex-grow-1">
         <ListGroup.Item action variant="light" href="/products" className="side-link fw-bolder" id="products">
@@ -39,7 +39,7 @@ const Sidebar = ({ display }) => {
         <ListGroup.Item action variant="light" href="/customers" className="side-link fw-bolder" id="customers_link">
           <PeopleFill />CUSTOMERS
         </ListGroup.Item>
-        <ListGroup.Item action variant="light" className="side-link fw-bolder" href="http://localhost:3001">
+        <ListGroup.Item action variant="light" className="side-link fw-bolder" href="https://jacksgarden.netlify.app/">
           <Shop />STORE
         </ListGroup.Item>
         <ListGroup.Item action variant="light" className="side-link fw-bolder" onClick={handleLogout}>

@@ -57,7 +57,7 @@ const OrderDetails = () => {
         <Col md="8">
           <Table borderless className="shadow-sm border small mb-3 bg-body rounded-3 text-secondary">
             <thead>
-              <tr>
+              <tr className="text-center">
                 <th>ORDERID</th>
                 <th>DATE</th>
                 <th>STATUS</th>
@@ -65,11 +65,11 @@ const OrderDetails = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="">
+              <tr className="text-center">
                 <td>{order.orderId}</td>
                 <td>{order.orderDate.split("T")[0]}</td>
                 <td>
-                  <Form className="d-flex align-items-center w-100" onSubmit={handleSubmit(updateOrderStatus)}>
+                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={handleSubmit(updateOrderStatus)}>
                     <Form.Select
                       name="orderStatus"
                       {...register("orderStatus",
@@ -79,7 +79,7 @@ const OrderDetails = () => {
                       <option value="Pending">Pending</option>
                       <option value="Completed">Completed</option>
                     </Form.Select>
-                    <Button variant="success" type="submit" className="rounded-pill ms-2 py-0 px-2">{isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : <span className="small">UPDATE</span>}</Button>
+                    <Button variant="success" type="submit" className="rounded-pill ms-2 py-0 px-2 mt-2 mt-md-0">{isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : <span className="small">UPDATE</span>}</Button>
                   </Form>
                 </td>
                 <td>{order.localPickup === 1 ? "Yes" : "No"}</td>

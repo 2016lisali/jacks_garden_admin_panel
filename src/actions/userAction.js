@@ -5,11 +5,11 @@ export const login = async (formData, setIsSuccess, dispatch, navigate) => {
     const { data } = await api.login(formData);
     setIsSuccess(true)
     const { userId, isAdmin, token } = data;
-    localStorage.setItem('jg_user', JSON.stringify({ user: { userId, isAdmin, token } }))
+    localStorage.setItem('jg_admin', JSON.stringify({ user: { userId, isAdmin, token } }))
     dispatch(loginUser({ userId, isAdmin }))
     setTimeout(() => {
       navigate("/")
-    }, 5000);
+    }, 3000);
   } catch (error) {
     alert(error.response?.data);
   }

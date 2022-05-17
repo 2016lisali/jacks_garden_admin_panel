@@ -14,5 +14,6 @@ export { default as Topbar } from './Topbar';
 export { default as Login } from './Login';
 export { default as ProductUpdateForm } from './Products/ProductUpdateForm';
 export { default as IsFetchingModal } from './IsFetchingModal';
+export { default as NotFound } from './404';
 
 

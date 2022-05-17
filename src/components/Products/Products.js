@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { getAllProducts, deleteProductById, getProductBySearch } from '../../api/api';
 import { Button, Form, FormControl, Table } from 'react-bootstrap';
 import ProductRow from './ProductRow';
-import FetchingSpinner from '../FetchingSpinner';
+// import FetchingSpinner from '../FetchingSpinner';
 import { useForm } from "react-hook-form";
 import Pagi from '../Pagi';
+import IsFetchingModal from '../IsFetchingModal';
 
 const Products = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
@@ -18,6 +19,7 @@ const Products = () => {
     try {
       const result = await getProductBySearch(data.search, data.search)
       result && setProducts(result.data)
+      setPages(Math.ceil(result.data.length / 10))
       setIsFetching(false)
     } catch (error) {
       setIsFetching(false)
@@ -106,7 +108,7 @@ const Products = () => {
           ))}
         </tbody>
       </Table>
-      {isFetching && <FetchingSpinner />}
+      {isFetching && <IsFetchingModal />}
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )
