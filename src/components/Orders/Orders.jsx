@@ -54,7 +54,7 @@ const Orders = () => {
     getOrders()
   }, [])
   return (
-    <div className='orders mt-5'>
+    <div className='orders mt-5 mx-2'>
       <div className='d-flex justify-content-between align-items-center mb-3'>
         <h4 className="mb-0">Orders</h4>
       </div>
@@ -82,21 +82,23 @@ const Orders = () => {
           <span className="search-error position-absolute text-danger">{errors.search && errors.search.message}</span>
         </Form>
       </div>
-      <Table className="shadow-sm mb-2 bg-body rounded text-secondary">
-        <thead className="bg-warning small text-light">
-          <tr className='text-center'>
-            <th>ORDER ID</th>
-            <th>DATE</th>
-            <th>STATUS</th>
-            <th>AMOUNT</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders?.slice((currentPage - 1) * 10, currentPage * 10).map(order => <OrderRow order={order} key={order.orderId} handleDelete={deleteOrder} />)}
-        </tbody>
-      </Table>
-      {isFetching && <IsFetchingModal />}
+      <div className="position-relative">
+        <Table className="shadow-sm mb-2 bg-body rounded text-secondary">
+          <thead className="bg-warning small text-light">
+            <tr className='text-center'>
+              <th>ORDER ID</th>
+              <th className='d-none d-md-table-cell'>DATE</th>
+              <th>STATUS</th>
+              <th>AMOUNT</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders?.slice((currentPage - 1) * 10, currentPage * 10).map(order => <OrderRow order={order} key={order.orderId} handleDelete={deleteOrder} />)}
+          </tbody>
+        </Table>
+        {isFetching && <IsFetchingModal />}
+      </div>
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )

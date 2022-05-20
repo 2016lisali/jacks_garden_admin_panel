@@ -25,7 +25,6 @@ const schema = yup.object({
 
 const ProductForm = ({ action, preloadedValues }) => {
   const [isFetching, setIsFetching] = useState(false);
-  // const [productImageFile, setProductImageFile] = useState();
   const location = useLocation();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm({

@@ -55,7 +55,7 @@ const Customers = () => {
 
 
   return (
-    <div className='customer mt-5 position-relative'>
+    <div className='customer mt-5 mx-2'>
       <div className='d-flex justify-content-between align-items-center mb-3'>
         <h4 className="mb-0">Customers</h4>
         <Button variant="dark" href="/customers/create" size="sm" className="rounded-pill px-3">+ ADD</Button>
@@ -82,23 +82,25 @@ const Customers = () => {
           <span className="search-error position-absolute text-danger">{errors.search && errors.search.message}</span>
         </Form>
       </div>
-      <Table className="shadow-sm mb-2 bg-body rounded text-secondary">
-        <thead className="bg-primary small bg-opacity-75 text-light">
-          <tr className="text-center">
-            <th>USERID</th>
-            <th>Name</th>
-            <th>EMAIL</th>
-            <th className='d-none d-md-table-cell'>DATE JOINED</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customers?.slice((currentPage - 1) * 10, currentPage * 10).map(customer => (
-            <CustomerRow customer={customer} handleDelete={handleDelete} key={customer.userId} />
-          ))}
-        </tbody>
-      </Table>
-      {isFetching && <IsFetchingModal />}
+      <div className="position-relative">
+        <Table className="shadow-sm mb-2 bg-body rounded text-secondary">
+          <thead className="bg-primary small bg-opacity-75 text-light">
+            <tr className="text-center">
+              <th>USERID</th>
+              <th>Name</th>
+              <th>EMAIL</th>
+              <th className='d-none d-md-table-cell'>DATE JOINED</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {customers?.slice((currentPage - 1) * 10, currentPage * 10).map(customer => (
+              <CustomerRow customer={customer} handleDelete={handleDelete} key={customer.userId} />
+            ))}
+          </tbody>
+        </Table>
+        {isFetching && <IsFetchingModal />}
+      </div>
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )

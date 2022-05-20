@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { getAllProducts, deleteProductById, getProductBySearch } from '../../api/api';
 import { Button, Form, FormControl, Table } from 'react-bootstrap';
 import ProductRow from './ProductRow';
-// import FetchingSpinner from '../FetchingSpinner';
 import { useForm } from "react-hook-form";
 import Pagi from '../Pagi';
 import IsFetchingModal from '../IsFetchingModal';
@@ -42,7 +41,6 @@ const Products = () => {
 
   useEffect(() => {
     const navLink = document.getElementById("products")
-    console.log("navLink", navLink);
     navLink?.classList.add("active");
     const getProducts = async () => {
       setIsFetching(true)
@@ -91,27 +89,30 @@ const Products = () => {
           <span className="search-error position-absolute text-danger">{errors.search && errors.search.message}</span>
         </Form>
       </div>
-      <Table className="shadow-sm mb-2 bg-body rounded text-secondary">
-        <thead className="bg-success small text-light">
-          <tr className='text-center'>
-            <th></th>
-            <th>PRODUCT</th>
-            <th className='d-none d-md-table-cell'>CATEGORY</th>
-            <th>REMAINING</th>
-            <th>PRICE</th>
-            <th>OPTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products?.slice((currentPage - 1) * 10, currentPage * 10).map(product => (
-            <ProductRow product={product} handleDelete={handleDelete} key={product.productId} />
-          ))}
-        </tbody>
-      </Table>
-      {isFetching && <IsFetchingModal />}
+      <div className="position-relative">
+        <Table className="shadow-sm mb-2 bg-body rounded text-secondary">
+          <thead className="bg-success small text-light">
+            <tr className='text-center'>
+              <th></th>
+              <th>PRODUCT</th>
+              <th className='d-none d-md-table-cell'>CATEGORY</th>
+              <th>REMAINING</th>
+              <th>PRICE</th>
+              <th>OPTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products?.slice((currentPage - 1) * 10, currentPage * 10).map(product => (
+              <ProductRow product={product} handleDelete={handleDelete} key={product.productId} />
+            ))}
+          </tbody>
+        </Table>
+        {isFetching && <IsFetchingModal />}
+      </div>
+
       <Pagi pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )
 }
 
-export default Products
+export default Products;

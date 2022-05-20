@@ -6,7 +6,7 @@ const OrderRow = ({ order, handleDelete }) => {
   return (
     <tr className='text-center align-middle'>
       <td>{order.orderId}</td>
-      <td>{order.orderDate.split("T")[0]}</td>
+      <td className='d-none d-md-table-cell'>{order.orderDate.split("T")[0]}</td>
       <td>{order.orderStatus}</td>
       <td>{order.total}</td>
       <td>
