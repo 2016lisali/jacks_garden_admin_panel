@@ -1,10 +1,14 @@
 # Jack's Garden Admin Panel
 
 Jack's Garden Admin Panel was created with react and react-bootstrap. It is the admin dashboard of Jack's Garden Online Shop.
-The backend is served at [https://jacks-garden-server.herokuapp.com](https://jacks-garden-server.herokuapp.com)
+The backend is served on [https://jacks-garden-server.herokuapp.com](https://jacks-garden-server.herokuapp.com)
 
-The admin can login, logout to the site, create/read/update/delete product, create/read/update/delete customer account,
-read/delete orders and update order status.
+Via the admin panel, the admin can:
+
+- login, logout to the site
+- create/read/update/delete product
+- create/read/update/delete user account (exclude password)
+- read/delete orders and update order status.
 
 You can find the backend code of this project on [https://github.com/2016lisali/jacks_garden_server](https://github.com/2016lisali/jacks_garden_server) and the online store code on [https://github.com/2016lisali/jacks_garden](https://github.com/2016lisali/jacks_garden)
 
@@ -65,12 +69,13 @@ The webpage will be served at http://localhost:3000
 
 ## Roadmap
 
-- [x] Add Ny Account page
-- [x] Add back to top links
+- [x] Add Pagination
+- [x] Add search bar for products, customers and orders page
 - [ ] Add Filter and Sort function for products/customers/orders pages
 - [ ] Create function to allow editing Announcement message in admin panel,
-      fetching and displaying the message in the store site.
-- [ ] Add logging page
-- [ ] delete images in the server
+      fetching and displaying the message in online store. (30-06-2022)
+- [ ] Add logging page (15-07-2022)
+- [ ] Allow admin upload multiple product images (31-07-2022)
+- [ ] delete images in the server (15-08-2022)
 
 <p align="right">(<a href="#top">back to top</a>)</p>

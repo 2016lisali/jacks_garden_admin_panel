@@ -3,17 +3,33 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     currentUser: null,
+    isFetching: false,
+    isSuccess: false,
+    // errorMsg: null
   },
   reducers: {
-    loginUser: (state, action) => {
+    loginStart: (state) => {
+      state.isFetching = true;
+    },
+    loginSuccess: (state, action) => {
+      state.isFetching = false;
+      state.isSuccess = true;
       state.currentUser = action.payload;
+      // state.errorMsg = null;
+    },
+    loginFailure: (state) => {
+      state.isFetching = false;
+      state.isSuccess = false;
+      // state.errorMsg = action.payload;
     },
     logout: (state) => {
       localStorage.removeItem("jg_admin");
       state.currentUser = null;
+      state.isSuccess = false;
+      // state.errorMsg = null;
     }
   }
 })
 
-export const { loginUser, logout } = userSlice.actions
+export const { loginStart, loginSuccess, loginFailure, logout } = userSlice.actions
 export default userSlice.reducer;

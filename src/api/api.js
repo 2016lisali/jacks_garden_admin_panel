@@ -1,12 +1,10 @@
 import axios from "axios";
 
-// connect to live server
-const BASE_URL = "https://jacks-garden-server.herokuapp.com/api";
+//connect to live server
+// const BASE_URL = process.env.REACT_APP_BASE_URL_CLOUD;
 // CONNECT TO LOCAL SERVER
-// const BASE_URL = "http://localhost:5000/api";
-
 const API = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL_CLOUD + "/api",
   headers: { 'Content-Type': "application/json" },
 })
 

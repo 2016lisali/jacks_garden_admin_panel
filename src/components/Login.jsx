@@ -1,25 +1,24 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, Container, Form, FloatingLabel } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { login } from "../actions/userAction";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import SuccessDiv from "./SuccessDiv";
-
+import FetchingSpinner from "./FetchingSpinner";
 
 const Login = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
+  const isSuccess = useSelector(state => state.isSuccess);
+  const isFetching = useSelector(state => state.isFetching);
+  const errorMsg = useSelector(state => state.errorMsg);
+  console.log("errmsg", errorMsg);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const handleLogin = (data) => {
     const formDataJSON = JSON.stringify(data)
-    login(formDataJSON, setIsSuccess, dispatch, navigate)
+    login(formDataJSON, dispatch)
   }
-  console.log(isSuccess);
   return (
-    <Container fluid="xl" className="login-container d-flex justify-content-center vh-100 align-items-center">
+    <Container fluid="xl" className="login-container d-flex justify-content-center align-items-center">
       {isSuccess ?
         <SuccessDiv message="Welcome to Jack's Garden Admin Panel. Redirecting you to dashboard now." /> :
         <Form className="login-form bg-white shadow rounded-3 py-5 px-3 px-md-4"
@@ -38,13 +37,20 @@ const Login = () => {
             <Form.Control
               type="password"
               placeholder="Password"
-              {...register("password", { required: true })}
-            />
-            <p className="text-danger">{errors.password && "Please enter a password"}</p>
+              {...register("password", {
+                pattern: {
+                  value: /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+*!=.]).*$/,
+                  message: `Password must be minimum 8 characters, contain at least one uppercase, one lowercase, one number and one symbol
+                            from (@#$%^&+*!=.)`
+                },
+                required: 'Please enter your password',
+              })} />
+            <p className="text-danger">{errors.password && errors.password.message}</p>
           </FloatingLabel>
           <div className="d-grid gap-2">
-            <Button variant="success" type="submit">SUBMIT</Button>
+            <Button variant="success" type="submit">{isFetching ? <FetchingSpinner /> : "SUBMIT"}</Button>
           </div>
+          {/* {errorMsg && <p className="text-danger">{errorMsg}</p>} */}
         </Form>}
 
     </Container>

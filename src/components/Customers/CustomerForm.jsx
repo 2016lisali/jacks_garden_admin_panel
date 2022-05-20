@@ -1,4 +1,4 @@
-import { Col, Form, Button, FloatingLabel, Row, Spinner } from "react-bootstrap";
+import { Col, Form, Button, FloatingLabel, Row } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from "react";
 import { createUser, updateUser } from "../../api/api"
 import { FormInput } from "../index"
+import FetchingSpinner from "../FetchingSpinner";
 
 // validation schema for creating user
 const schema = yup.object({
@@ -81,12 +82,12 @@ const CustomerForm = ({ action, preloadedValues }) => {
         <div className="d-grid gap-2 mb-3">
           <Button variant="success" type="submit"
             className={`w-100 d-${action === "create" ? "block" : "none"}`} >
-            {isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : 'CREATE'}
+            {isFetching ? <FetchingSpinner /> : 'CREATE'}
           </Button>
           <Button variant="success" type="submit"
             className={`w-100 d-${action === "update" ? "block" : "none"}`}
             onClick={handleSubmit(handleUpdateUser)}>
-            {isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : 'UPDATE'}
+            {isFetching ? <FetchingSpinner /> : 'UPDATE'}
           </Button>
         </div>
       </Form>
