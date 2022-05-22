@@ -8,8 +8,7 @@ import FetchingSpinner from "./FetchingSpinner";
 const Login = () => {
   const isSuccess = useSelector(state => state.isSuccess);
   const isFetching = useSelector(state => state.isFetching);
-  const errorMsg = useSelector(state => state.errorMsg);
-  console.log("errmsg", errorMsg);
+  // const errorMsg = useSelector(state => state.errorMsg);
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm();
 

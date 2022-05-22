@@ -37,8 +37,6 @@ const Orders = () => {
     }
   }
   useEffect(() => {
-    const navLink = document.getElementById("orders")
-    navLink?.classList.add("active");
     const getOrders = async () => {
       setIsFetching(true)
       try {

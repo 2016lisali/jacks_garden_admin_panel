@@ -42,7 +42,6 @@ const CustomerForm = ({ action, preloadedValues }) => {
       alert(error)
     }
   };
-  console.log(preloadedValues);
   const handleUpdateUser = async (data) => {
     setIsFetching(true)
     const jsonFormData = JSON.stringify(data)

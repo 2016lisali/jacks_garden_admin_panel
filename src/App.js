@@ -1,7 +1,7 @@
 import {
   BackToTopBtn, Customers, CustomerForm, CustomerUpdateForm, Footer, Home, Login,
-  Orders, OrderDetails, ProductForm, ProductUpdateForm, Products, Sidebar, Topbar,
-  NotFound
+  NotFound, Orders, OrderDetails, ProductForm, ProductUpdateForm, Products, Sidebar,
+  Topbar, MailingList
 } from "./components/index";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -29,6 +29,7 @@ function App() {
               <Route path="/products" exact element={<RequireAuth><Products /></RequireAuth>} />
               <Route path="/products/create" exact element={<RequireAuth><ProductForm action="create" /></RequireAuth>} />
               <Route path="/products/update" exact element={<RequireAuth><ProductUpdateForm action="update" /></RequireAuth>} />
+              <Route path="/mailinglist" exact element={<RequireAuth><MailingList /></RequireAuth>} />
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
             <Footer />

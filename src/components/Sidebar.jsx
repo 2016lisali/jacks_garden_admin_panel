@@ -1,27 +1,44 @@
-import { useState, useEffect } from "react";
-import decode from 'jwt-decode';
+import { useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Image, ListGroup } from "react-bootstrap";
-import { Flower1, Receipt, PeopleFill, Shop, BoxArrowRight } from "react-bootstrap-icons";
+import { Flower1, Receipt, PeopleFill, Shop, BoxArrowRight, Envelope } from "react-bootstrap-icons";
 import logo from "../assets/logo.jpg";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userReducer";
 
 const Sidebar = ({ display }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('jg_admin'))?.user);
+  // const [user, setUser] = useState(JSON.parse(localStorage.getItem('jg_admin'))?.user);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const productsLinkElement = useRef();
+  const ordersLinkElement = useRef();
+  const customersLinkElement = useRef();
+  const mailingListLinkElement = useRef();
+
   useEffect(() => {
-    const token = user?.token;
-    if (token) {
-      const decodedToken = decode(token)
-      if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout()
+    const currentPage = location.pathname.split('/')[1];
+    switch (currentPage) {
+      case "products":
+        productsLinkElement.current.classList.add("active");
+        break;
+      case "orders":
+        ordersLinkElement.current.classList.add("active");
+        break;
+      case "customers":
+        customersLinkElement.current.classList.add("active");
+        break;
+      case "mailinglist":
+        mailingListLinkElement.current.classList.add("active");
+        break;
+      default:
+        productsLinkElement.current.classList.remove("active");
+        ordersLinkElement.current.classList.remove("active");
+        customersLinkElement.current.classList.remove("active");
+        mailingListLinkElement.current.classList.remove("active");
     }
-    //????
-    setUser(JSON.parse(localStorage.getItem('jg_admin'))?.user)
-    // eslint-disable-next-line
   }, [location])
+
   const handleLogout = () => {
     dispatch(logout())
     navigate("/")
@@ -30,14 +47,17 @@ const Sidebar = ({ display }) => {
     <div className={`sidebar d-${display} d-md-flex flex-column bg-white shadow`}>
       <Link to="/"><Image src={logo} roundedCircle alt="store logo" /></Link>
       <ListGroup variant="flush" as="ul" className="mt-3 flex-grow-1">
-        <ListGroup.Item action variant="light" href="/products" className="side-link fw-bolder" id="products">
+        <ListGroup.Item action variant="light" ref={productsLinkElement} href="/products" className="side-link fw-bolder">
           <Flower1 />PRODUCTS
         </ListGroup.Item>
-        <ListGroup.Item action variant="light" href="/orders" className="side-link fw-bolder" id="orders">
+        <ListGroup.Item action variant="light" ref={ordersLinkElement} href="/orders" className="side-link fw-bolder">
           <Receipt />ORDERS
         </ListGroup.Item>
-        <ListGroup.Item action variant="light" href="/customers" className="side-link fw-bolder" id="customers_link">
+        <ListGroup.Item action variant="light" ref={customersLinkElement} href="/customers" className="side-link fw-bolder">
           <PeopleFill />CUSTOMERS
+        </ListGroup.Item>
+        <ListGroup.Item action variant="light" ref={mailingListLinkElement} href="/mailinglist" className="side-link fw-bolder">
+          <Envelope />MAILING LIST
         </ListGroup.Item>
         <ListGroup.Item action variant="light" className="side-link fw-bolder" href="https://jacksgarden.netlify.app/">
           <Shop />STORE

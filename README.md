@@ -9,10 +9,11 @@ Via the admin panel, the admin can:
 - create/read/update/delete product
 - create/read/update/delete user account (exclude password)
 - read/delete orders and update order status.
+- read mailing list, send emails to customers
 
 You can find the backend code of this project on [https://github.com/2016lisali/jacks_garden_server](https://github.com/2016lisali/jacks_garden_server) and the online store code on [https://github.com/2016lisali/jacks_garden](https://github.com/2016lisali/jacks_garden)
 
-![project image](https://github.com/2016lisali/lisali/blob/main/public/assets/jacks_garden_admin_panel_responsive.jpg)
+![project image](https://github.com/2016lisali/lisas_portfolio/blob/main/public/assets/jacks_garden_admin_panel_responsive.jpg)
 
 ## Features
 

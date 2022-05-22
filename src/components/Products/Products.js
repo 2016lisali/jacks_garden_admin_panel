@@ -40,8 +40,6 @@ const Products = () => {
   }
 
   useEffect(() => {
-    const navLink = document.getElementById("products")
-    navLink?.classList.add("active");
     const getProducts = async () => {
       setIsFetching(true)
       try {
@@ -98,7 +96,7 @@ const Products = () => {
               <th className='d-none d-md-table-cell'>CATEGORY</th>
               <th>REMAINING</th>
               <th>PRICE</th>
-              <th>OPTIONS</th>
+              <th>ACTIONS</th>
             </tr>
           </thead>
           <tbody>

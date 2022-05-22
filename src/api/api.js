@@ -1,10 +1,12 @@
 import axios from "axios";
 
 //connect to live server
-// const BASE_URL = process.env.REACT_APP_BASE_URL_CLOUD;
-// CONNECT TO LOCAL SERVER
+const BASE_URL = process.env.REACT_APP_BASE_URL_CLOUD;
+
+// connect to local server
+// const BASE_URL = process.env.REACT_APP_BASE_URL_LOCAL;
 const API = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL_CLOUD + "/api",
+  baseURL: BASE_URL + "/api",
   headers: { 'Content-Type': "application/json" },
 })
 
@@ -42,6 +44,8 @@ export const updateUser = (formData) => API.patch(`/users/${formData.userId}`, f
 export const deleteUser = (userId) => API.delete(`/users/${userId}`);
 export const register = (formData) => API.post("/users/register", formData);
 
+// Email List API
+export const getEmailList = () => API.get("/users/emails");
 // Order API
 export const getAllOrders = () => API.get("/orders");
 export const getOrderDetails = (orderId) => API.get(`/orders/${orderId}`)
