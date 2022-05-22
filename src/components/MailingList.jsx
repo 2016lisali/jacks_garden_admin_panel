@@ -7,7 +7,6 @@ import Pagi from './Pagi';
 import IsFetchingModal from './IsFetchingModal';
 import FetchingSpinner from './FetchingSpinner';
 import SuccessDiv from './SuccessDiv';
-import { Link } from 'react-router-dom';
 
 const MailingList = () => {
   const [allEmails, setAllEmails] = useState();
