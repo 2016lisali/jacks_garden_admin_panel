@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Image, ListGroup } from "react-bootstrap";
-import { Flower1, Receipt, PeopleFill, Shop, BoxArrowRight, Envelope } from "react-bootstrap-icons";
+import { Flower1, Receipt, PeopleFill, Shop, BoxArrowRight, Envelope, HouseHeartFill } from "react-bootstrap-icons";
 import logo from "../assets/logo.jpg";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userReducer";
@@ -11,6 +11,7 @@ const Sidebar = ({ display }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const homeLinkElement = useRef();
   const productsLinkElement = useRef();
   const ordersLinkElement = useRef();
   const customersLinkElement = useRef();
@@ -18,7 +19,11 @@ const Sidebar = ({ display }) => {
 
   useEffect(() => {
     const currentPage = location.pathname.split('/')[1];
+    console.log(currentPage);
     switch (currentPage) {
+      case "":
+        homeLinkElement.current.classList.add("active");
+        break;
       case "products":
         productsLinkElement.current.classList.add("active");
         break;
@@ -36,6 +41,7 @@ const Sidebar = ({ display }) => {
         ordersLinkElement.current.classList.remove("active");
         customersLinkElement.current.classList.remove("active");
         mailingListLinkElement.current.classList.remove("active");
+        homeLinkElement.current.classList.remove("active");
     }
   }, [location])
 
@@ -47,6 +53,9 @@ const Sidebar = ({ display }) => {
     <div className={`sidebar d-${display} d-md-flex flex-column bg-white shadow`}>
       <Link to="/"><Image src={logo} roundedCircle alt="store logo" /></Link>
       <ListGroup variant="flush" as="ul" className="mt-3 flex-grow-1">
+        <ListGroup.Item action variant="light" ref={homeLinkElement} href="/" className="side-link fw-bolder">
+          <HouseHeartFill />DASHBOARD
+        </ListGroup.Item>
         <ListGroup.Item action variant="light" ref={productsLinkElement} href="/products" className="side-link fw-bolder">
           <Flower1 />PRODUCTS
         </ListGroup.Item>

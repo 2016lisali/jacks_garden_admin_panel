@@ -5,7 +5,7 @@ import { SalesChart } from "./SalesChart";
 import StatCard from "./StatCard";
 
 const Home = () => {
-  const [salesData, setSalesData] = useState();
+  const [salesData, setSalesData] = useState(null);
   const [statData, setStatData] = useState();
   const [emailData, setsEmailData] = useState();
   useEffect(() => {
@@ -24,7 +24,7 @@ const Home = () => {
     getData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  console.log(emailData);
+
   return (
     <Container fluid="xl" className="home px-4 px-md-0">
       <Row className="top-container mt-4">
@@ -37,7 +37,7 @@ const Home = () => {
         <Col xs={6} md={3}>
           <StatCard title="Orders"
             bg="bg-warning"
-            amount={`$ ${salesData && salesData[salesData?.length - 1]?.totalAmount / 100}`}
+            amount={salesData && `$ ${salesData[salesData?.length - 1]?.totalAmount / 100}`}
             link="/orders" />
         </Col>
         <Col xs={6} md={3}>
