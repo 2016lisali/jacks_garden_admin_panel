@@ -59,7 +59,17 @@ You can find the demo [here](https://jacksgardenadmin.netlify.app/)
    ```sh
    npm install
    ```
-3. Cd to client folder in terminal and start client server
+3. 3. Create a `.env` file in root folder and enter following fields
+
+   ```env
+   PORT = YOUR_PORT_NUMBER
+   REACT_APP_BASE_URL_LOCAL = YOUR_SERVER_URL (this is the address of your local server, make sure the server is running)
+   REACT_APP_SERVICE_ID = YOUr_EMAILJS_SERVICE_ID
+   REACT_APP_TEMPLATE_ID = YOUr_EMAILJS_TEMPLATE_ID
+   REACT_APP_PUBLIC_KEY = YOUr_EMAILJS_PUBLIC_KEY
+   ```
+
+4. Cd to client folder in terminal and start client server
    ```sh
    npm start
    ```
@@ -71,8 +81,9 @@ The webpage will be served at http://localhost:3000
 ## Roadmap
 
 - [x] Add Pagination
-- [x] Add search bar for products, customers and orders page
-- [ ] Add Filter and Sort function for products/customers/orders pages
+- [x] Add search bar for products, customers and orders section (30-04-2022)
+- [x] Add mailing list section and the functionality of sending emails to the email addresses in the list (20-05-2022)
+- [ ] Add Filter and Sort function for products/customers/orders pages (30-06-2022)
 - [ ] Create function to allow editing Announcement message in admin panel,
       fetching and displaying the message in online store. (30-06-2022)
 - [ ] Add logging page (15-07-2022)

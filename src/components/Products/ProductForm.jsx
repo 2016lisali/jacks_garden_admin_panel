@@ -10,10 +10,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"]
 const schema = yup.object({
   productName: yup.string().max(50, "The length cannot be over 45").required(),
-  category: yup.string().required(),
+  category: yup.string().required().matches(/\b(?:indoor|outdoor|fruittree)\b/, "category is a required field"),
   productDescription: yup.string().max(500).required(),
   productImage: yup.string(),
-  productImageFile: yup.mixed().nullable().notRequired()
+  productImageFile: yup.mixed().required()
     .test("FILE_SIZE", "Uploaded file is too big.",
       value => (value.length === 0 || !value) || (value.length > 0 && value["0"].size <= 2000000)
     )
@@ -116,10 +116,12 @@ const ProductForm = ({ action, preloadedValues }) => {
             <Form.Group className="mt-3" >
               <Form.Control
                 type="file"
+                required
                 placeholder="product image"
                 multiple={false}
                 {...register("productImageFile")}
               />
+              <p className="text-danger">{errors.productImageFile?.message}</p>
             </Form.Group>
           </Col>
           <Col md className="pt-3 pt-md-0">
