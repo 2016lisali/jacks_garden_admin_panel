@@ -13,7 +13,9 @@ const schema = yup.object({
   category: yup.string().required().matches(/\b(?:indoor|outdoor|fruittree)\b/, "category is a required field"),
   productDescription: yup.string().max(500).required(),
   productImage: yup.string(),
-  productImageFile: yup.mixed().required()
+  productImageFile: yup.mixed()
+    .test("FILE", "Products image is a required field.",
+      value => value.length > 0)
     .test("FILE_SIZE", "Uploaded file is too big.",
       value => (value.length === 0 || !value) || (value.length > 0 && value["0"].size <= 2000000)
     )
@@ -116,7 +118,7 @@ const ProductForm = ({ action, preloadedValues }) => {
             <Form.Group className="mt-3" >
               <Form.Control
                 type="file"
-                required
+
                 placeholder="product image"
                 multiple={false}
                 {...register("productImageFile")}
