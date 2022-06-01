@@ -58,7 +58,7 @@ const Customers = () => {
         <h4 className="mb-0">Customers</h4>
         <Button variant="dark" href="/customers/create" size="sm" className="rounded-pill px-3">+ ADD</Button>
       </div>
-      <div className="w-100 mb-3">
+      <div className="mb-3">
         <Form className="input-group" onSubmit={handleSubmit(handleSearch)}>
           <FormControl
             id="search-customers"
@@ -85,7 +85,7 @@ const Customers = () => {
           <thead className="bg-primary small bg-opacity-75 text-light">
             <tr className="text-center">
               <th>USERID</th>
-              <th>Name</th>
+              <th>NAME</th>
               <th>EMAIL</th>
               <th className='d-none d-md-table-cell'>DATE JOINED</th>
               <th>ACTIONS</th>

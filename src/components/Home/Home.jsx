@@ -44,7 +44,7 @@ const Home = () => {
           <StatCard title="Customers"
             bg="bg-primary"
             amount={statData?.totalUsers}
-            link="/customer" />
+            link="/customers" />
         </Col>
         <Col xs={6} md={3}>
           <StatCard title="Mailing List"

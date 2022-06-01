@@ -61,7 +61,7 @@ const OrderDetails = () => {
                 <th>ORDERID</th>
                 <th>DATE</th>
                 <th>STATUS</th>
-                <th>Local Pickup</th>
+                <th className='d-none d-md-table-cell'>LOCAL PICKUP</th>
               </tr>
             </thead>
             <tbody>
@@ -82,7 +82,7 @@ const OrderDetails = () => {
                     <Button variant="success" type="submit" className="rounded-pill ms-2 py-0 px-2 mt-2 mt-md-0">{isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : <span className="small">UPDATE</span>}</Button>
                   </Form>
                 </td>
-                <td>{order.localPickup === 1 ? "Yes" : "No"}</td>
+                <td className='d-none d-md-table-cell'>{order.localPickup === 1 ? "Yes" : "No"}</td>
               </tr>
             </tbody>
           </Table>
@@ -101,7 +101,7 @@ const OrderDetails = () => {
             </tbody>
           </Table>
           <hr className="mb-1 mt-4" />
-          <div className="small fw-bolder text-secondary px-2" style={{ width: "200px" }}>
+          <div className="small fw-bolder text-secondary px-2 pb-4" style={{ width: "200px" }}>
             <div className="w-100 w-lg-25 d-flex justify-content-between py-1">
               <span className="me-5">SUBTOTAL</span>
               <span>{order.total}</span>

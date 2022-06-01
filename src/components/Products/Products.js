@@ -94,7 +94,7 @@ const Products = () => {
               <th></th>
               <th>PRODUCT</th>
               <th className='d-none d-md-table-cell'>CATEGORY</th>
-              <th>REMAINING</th>
+              <th className='d-none d-md-table-cell'>REMAINING</th>
               <th>PRICE</th>
               <th>ACTIONS</th>
             </tr>

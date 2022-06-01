@@ -10,6 +10,14 @@
   }
 }
 
+.customer {
+  max-width: 100vw;
+  #emailBar {
+    word-wrap: break-word;
+    word-break:break-all;
+  }
+}
+
 .isFetching-modal {
   background-color: rgba(0,0,0,0.5);
   z-index: 99;

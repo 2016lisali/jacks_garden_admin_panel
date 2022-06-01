@@ -7,7 +7,7 @@ const CustomerRow = ({ customer, handleDelete }) => {
         {customer.userId}
       </td>
       <td>{`${customer.firstName} ${customer.lastName}`}</td>
-      <td>{customer.email}</td>
+      <td id="emailBar">{customer.email}</td>
       <td className="d-none d-md-table-cell">
         {customer.dateCreate.split("T")[0]}
       </td>
@@ -17,7 +17,7 @@ const CustomerRow = ({ customer, handleDelete }) => {
           <Trash color="FIreBrick" />
         </Button>
       </td>
-    </tr>
+    </tr >
   )
 }
 

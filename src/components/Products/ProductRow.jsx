@@ -8,7 +8,7 @@ const ProductRow = ({ product, handleDelete }) => {
       <td><Image className="me-3" rounded src={`${URL}${product.productImage}`} style={{ width: "50px", height: "50px" }} /></td>
       <td>{product.productName}</td>
       <td className='d-none d-md-table-cell'>{product.category}</td>
-      <td>{product.quantityInstock}</td>
+      <td className='d-none d-md-table-cell'>{product.quantityInstock}</td>
       <td>
         {product.price}
       </td>
