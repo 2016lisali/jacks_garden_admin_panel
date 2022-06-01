@@ -1,6 +1,14 @@
 // .home {
 //   height: calc(100vh-84px);
 // }
+#deleteButton {
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
 
 .isFetching-modal {
   background-color: rgba(0,0,0,0.5);
@@ -12,9 +20,35 @@
   .login-form {
   max-width: 450px;
   width: 95%;
-}
+  }
 }
 
+.order-details {
+  select {
+    width: 80px;
+  }
+}
+
+.pagination {
+
+  .page-item {
+    .page-link {
+      color: #198754 !important;
+    }
+    &.active {
+      .page-link {
+        color: white !important;
+        background-color: #198754 !important;
+      }
+    }
+  }
+
+  
+}
+
+.register-form {
+  max-width: 700px;
+}
 
 .sidebar {
   min-height: 100vh;
@@ -41,38 +75,3 @@
     border-color: #b3b3b3;
 }
 }
-
-#deleteButton {
-  &:hover {
-    transform: scale(1.1);
-  }
-  &:active {
-    transform: scale(0.9);
-  }
-}
-
-.order-details {
-  select {
-    width: 80px;
-  }
-}
-.pagination {
-
-  .page-item {
-    .page-link {
-      color: #198754 !important;
-    }
-    &.active {
-      .page-link {
-        color: white !important;
-        background-color: #198754 !important;
-      }
-    }
-  }
-
-  
-}
-.register-form {
-  max-width: 700px;
-}
-

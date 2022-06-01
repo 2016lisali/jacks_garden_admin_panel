@@ -11,7 +11,7 @@ const Topbar = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Container fluid className="navbar-container fixed-top bg-white d-md-none shadow" style={{ height: "66px" }} >
+      <Container fluid className="navbar-container fixed-top bg-white d-lg-none shadow" style={{ height: "66px" }} >
         <Navbar expand="sm" className='container-xxl bg-white d-flex flex-column justify-content-center align-items-center bg-white h-100'>
           <div className="nav1 w-100 d-flex justify-content-between align-items-center" >
             <Navbar.Brand className='navBrand d-flex justify-content-sm-center'>
@@ -29,7 +29,7 @@ const Topbar = () => {
           </div>
         </Navbar>
       </Container>
-      <Container className='w-100 d-block d-md-none' style={{ height: "66px" }}></Container>
+      <Container className='w-100 d-block d-lg-none' style={{ height: "66px" }}></Container>
     </>
   )
 }

@@ -26,9 +26,14 @@ const Login = () => {
           <h6 className="text-center text-secondary pb-3">@JACK'S GARDEN ADMIN PANEL</h6>
           <FloatingLabel className="mb-3" label="Email">
             <Form.Control
-              type="email"
               placeholder="Email"
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: true,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "invalid email address"
+                }
+              })}
             />
             <p className="text-danger">{errors.email && "Please enter a valid email"}</p>
           </FloatingLabel>
@@ -39,8 +44,7 @@ const Login = () => {
               {...register("password", {
                 pattern: {
                   value: /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+*!=.]).*$/,
-                  message: `Password must be minimum 8 characters, contain at least one uppercase, one lowercase, one number and one symbol
-                            from (@#$%^&+*!=.)`
+                  message: `Please check your password`
                 },
                 required: 'Please enter your password',
               })} />

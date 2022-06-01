@@ -3,8 +3,9 @@ import { loginStart, loginSuccess, loginFailure } from '../redux/userReducer.js'
 export const login = async (formData, dispatch) => {
   dispatch(loginStart());
   try {
-    const { data } = await api.login(formData);
-    const { userId, isAdmin, token } = data;
+    const res = await api.login(formData);
+    console.log("no response");
+    const { userId, isAdmin, token } = res?.data;
     if (isAdmin === 1) {
       dispatch(loginSuccess({ userId, isAdmin, token }))
       localStorage.setItem('jg_admin', JSON.stringify({ user: { userId, isAdmin, token } }))
@@ -13,7 +14,7 @@ export const login = async (formData, dispatch) => {
     }
   } catch (error) {
     dispatch(loginFailure())
-    alert(error);
+    alert(error.response?.data || error.message);
   }
 }
 

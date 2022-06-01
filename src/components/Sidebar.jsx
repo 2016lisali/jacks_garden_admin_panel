@@ -50,7 +50,7 @@ const Sidebar = ({ display }) => {
     navigate("/")
   }
   return (
-    <div className={`sidebar d-${display} d-md-flex flex-column bg-white shadow`}>
+    <div className={`sidebar d-${display} d-lg-flex flex-column bg-white shadow`}>
       <Link to="/"><Image src={logo} roundedCircle alt="store logo" /></Link>
       <ListGroup variant="flush" as="ul" className="mt-3 flex-grow-1">
         <ListGroup.Item action variant="light" ref={homeLinkElement} href="/" className="side-link fw-bolder">

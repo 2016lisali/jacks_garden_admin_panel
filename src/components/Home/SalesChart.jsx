@@ -1,10 +1,12 @@
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  // PointElement,
+  // LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -14,8 +16,9 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  // PointElement,
+  // LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
@@ -66,11 +69,29 @@ export function SalesChart({ salesData }) {
           }
           return sales
         }),
-        borderColor: '#198754',
-        backgroundColor: '#fff',
+        // borderColor: '#198754',
+        // backgroundColor: '#fff',
+        backgroundColor: "rgba(25,135,84,0.5)"
+      },
+      {
+        label: 'Average Sales',
+        data: labels.map(item => {
+          let average = 0;
+          salesData.forEach(data => average += data.totalAmount / 100)
+          // let sales = 0;
+          // for (let d of salesData) {
+          //   if (d.month === item) {
+          //     sales = d.totalAmount / 100
+          //   }
+          // }
+          return average / salesData.length;
+        }),
+        // borderColor: '#198754',
+        // backgroundColor: '#fff',
+        backgroundColor: 'rgba(13,110,253, 0.5)',
       }
     ],
   };
 
-  return <Line className="rounded-3 shadow bg-white p-4 mx-3 mt-4" options={options} data={data} />;
+  return <Bar className="rounded-3 shadow bg-white p-4 mx-3 mt-4" options={options} data={data} />;
 }
