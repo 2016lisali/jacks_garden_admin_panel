@@ -9,17 +9,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // create form validation schema 
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"]
 const schema = yup.object({
-  productName: yup.string().max(50, "The length cannot be over 45").required(),
+  productName: yup.string().max(50, "The length cannot be over 45").required().matches(/^[A-Za-z0-9 -]+$/, "The product name can only contain letters and alphabets"),
   category: yup.string().required().matches(/\b(?:indoor|outdoor|fruittree)\b/, "category is a required field"),
   productDescription: yup.string().max(500).required(),
   productImage: yup.string(),
   productImageFile: yup.mixed()
     .test("FILE", "Products image is a required field.",
       value => value.length > 0)
-    .test("FILE_SIZE", "Uploaded file is too big.",
-      value => (value.length === 0 || !value) || (value.length > 0 && value["0"].size <= 2000000)
+    .test("FILE_SIZE", "The file size cannot be over 1 MB.",
+      value => (value.length === 0 || !value) || (value.length > 0 && value["0"].size <= 1024000)
     )
-    .test("FILE_FORMAT", "Uploaded file has unsupported format.",
+    .test("FILE_FORMAT", "Only support jpg, jpeg and png format.",
       value => value.length === 0 || (value.length > 0 && SUPPORTED_FORMATS.includes(value["0"].type))),
   price: yup.number().required(),
   quantityInstock: yup.number().integer().required(),
@@ -35,7 +35,6 @@ const ProductForm = ({ action, preloadedValues }) => {
   });
 
   const handleCreateProduct = async (data) => {
-    console.log(data);
     setIsFetching(true)
     const jsonFormData = JSON.stringify({ ...data, productImage: "/images/" + data.productImageFile["0"].name })
     const imgform = new FormData();

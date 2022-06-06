@@ -18,7 +18,7 @@ const Home = () => {
         setStatData({ ...statData, "salesData": orderRes.data, "totalProducts": statRes.data[0].totalProducts, "totalUsers": statRes.data[0].totalUsers })
         setsEmailData(totalEmails.data)
       } catch (error) {
-        alert(error)
+        console.log(error);
       }
     }
     getData()
