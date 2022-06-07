@@ -21,8 +21,18 @@ const schema = yup.object({
     )
     .test("FILE_FORMAT", "Only support jpg, jpeg and png format.",
       value => value.length === 0 || (value.length > 0 && SUPPORTED_FORMATS.includes(value["0"].type))),
-  price: yup.number().required(),
-  quantityInstock: yup.number().integer().required(),
+  price: yup.number().required()
+    .test(
+      'Is positive?',
+      'ERROR: The number must be greater than 0!',
+      (value) => value > 0
+    ),
+  quantityInstock: yup.number().integer().required()
+    .test(
+      'Is positive?',
+      'ERROR: The number must be greater than 0!',
+      (value) => value > 0
+    ),
 }).required();
 
 const ProductForm = ({ action, preloadedValues }) => {
