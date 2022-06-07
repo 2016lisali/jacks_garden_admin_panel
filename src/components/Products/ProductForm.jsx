@@ -118,7 +118,6 @@ const ProductForm = ({ action, preloadedValues }) => {
               <Form.Control
                 type="number"
                 step="0.01"
-                min="0"
                 {...register("price")}
                 placeholder="price"
               />
