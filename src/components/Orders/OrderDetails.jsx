@@ -23,11 +23,6 @@ const OrderDetails = () => {
   }
 
   const updateOrderStatus = async (data) => {
-    if (isTester === "test") {
-      alert("You are with a test account, only get requests allowed");
-      return;
-    };
-
     setIsFetching(true)
     const formDataJson = JSON.stringify(data)
     try {
@@ -75,15 +70,17 @@ const OrderDetails = () => {
                 <td>{order.orderId}</td>
                 <td>{order.orderDate.split("T")[0]}</td>
                 <td>
-                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={() => handleSubmit(updateOrderStatus)}>
+                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={() =>
+                    isTester === "test" ?
+                      alert("You are with a test account, only get requests allowed") :
+                      handleSubmit(updateOrderStatus)}>
                     <Form.Select
                       name="orderStatus"
                       {...register("orderStatus",
                         { required: "input cannot be null" })} >
                       <option value={order.orderStatus}>{order.orderStatus}</option>
-                      <option value="Paid">Paid</option>
-                      <option value="Pending">Pending</option>
-                      <option value="Completed">Completed</option>
+                      {["Paid", "Pending", "Completed"].map(item =>
+                        item !== order.orderStatus && <option value={item}>{item}</option>)}
                     </Form.Select>
                     <Button variant="success" type="submit" className="rounded-pill ms-2 py-0 px-2 mt-2 mt-md-0">{isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : <span className="small">UPDATE</span>}</Button>
                   </Form>
