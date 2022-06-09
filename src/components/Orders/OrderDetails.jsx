@@ -72,7 +72,7 @@ const OrderDetails = () => {
                 <td>
                   <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={(e) => {
                     e.preventDefault()
-                    if (isTester = "test") {
+                    if (isTester === "test") {
                       alert("You are with a test account, only get requests allowed")
                       return
                     }
