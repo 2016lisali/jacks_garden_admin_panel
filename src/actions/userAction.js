@@ -4,11 +4,11 @@ export const login = async (formData, dispatch) => {
   dispatch(loginStart());
   try {
     const res = await api.login(formData);
-    console.log("no response");
-    const { userId, isAdmin, token } = res?.data;
+    console.log(res);
+    const { userId, isAdmin, token, firstName } = res?.data;
     if (isAdmin === 1) {
-      dispatch(loginSuccess({ userId, isAdmin, token }))
-      localStorage.setItem('jg_admin', JSON.stringify({ user: { userId, isAdmin, token } }))
+      dispatch(loginSuccess({ userId, isAdmin, token, firstName }))
+      localStorage.setItem('jg_admin', JSON.stringify({ user: { userId, isAdmin, token, firstName } }))
     } else {
       throw new Error("You are not authenticated")
     }

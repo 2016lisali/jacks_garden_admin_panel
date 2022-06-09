@@ -1,6 +1,9 @@
 import { Button } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
+import { useSelector } from "react-redux";
+
 const CustomerRow = ({ customer, handleDelete }) => {
+  const isTester = useSelector(state => state.currentUser?.firstName);
   return (
     <tr className='text-center align-middle'>
       <td>
@@ -13,7 +16,10 @@ const CustomerRow = ({ customer, handleDelete }) => {
       </td>
       <td>
         <Button variant="link" href={`/customers/update?userId=${customer.userId}`}>EDIT</Button>
-        <Button variant="link" onClick={() => handleDelete(customer.userId)}>
+        <Button variant="link" onClick={() =>
+          isTester === "test" ?
+            alert("You are with a test account, only get requests allowed") :
+            handleDelete(customer.userId)}>
           <Trash color="FIreBrick" />
         </Button>
       </td>

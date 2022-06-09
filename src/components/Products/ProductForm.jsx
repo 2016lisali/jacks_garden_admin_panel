@@ -1,5 +1,6 @@
 import { Button, Col, Container, FloatingLabel, Form, Row, Spinner } from "react-bootstrap";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { createProduct, updateProduct, uploadImg } from "../../api/api.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -39,12 +40,17 @@ const ProductForm = ({ action, preloadedValues }) => {
   const [isFetching, setIsFetching] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const isTester = useSelector(state => state.currentUser?.firstName);
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
     defaultValues: preloadedValues
   });
 
   const handleCreateProduct = async (data) => {
+    if (isTester === "test") {
+      alert("You are with a test account, only get requests allowed")
+      return
+    }
     setIsFetching(true)
     const jsonFormData = JSON.stringify({ ...data, productImage: "/images/" + data.productImageFile["0"].name })
     const imgform = new FormData();
@@ -61,7 +67,10 @@ const ProductForm = ({ action, preloadedValues }) => {
     }
   }
   const handleUpdateProduct = async (data) => {
-    console.log(data);
+    if (isTester === "test") {
+      alert("You are with a test account, only get requests allowed")
+      return
+    }
     setIsFetching(true)
     const imgform = new FormData();
     if (data.productImageFile["0"]) {

@@ -1,7 +1,9 @@
 import { Button, Image } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
+import { useSelector } from "react-redux";
+
 const ProductRow = ({ product, handleDelete }) => {
-  // const URL = "http://localhost:5000";
+  const isTester = useSelector(state => state.currentUser?.firstName);
   const URL = "https://jacks-garden-server.herokuapp.com";
   return (
     <tr className='text-center align-middle'>
@@ -14,7 +16,7 @@ const ProductRow = ({ product, handleDelete }) => {
       </td>
       <td>
         <Button variant="link" href={`/products/update?productId=${product.productId}`}>EDIT</Button>
-        <Button variant="link" onClick={() => handleDelete(product.productId)}>
+        <Button variant="link" onClick={() => isTester === "test" ? alert("You are with a test account, only get requests allowed") : handleDelete(product.productId)}>
           <Trash id="deleteButton" color="FireBrick" />
         </Button></td>
     </tr>

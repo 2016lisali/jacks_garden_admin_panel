@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
 import { Button } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 const OrderRow = ({ order, handleDelete }) => {
+  const isTester = useSelector(state => state.currentUser?.firstName);
   return (
     <tr className='text-center align-middle'>
       <td>{order.orderId}</td>
@@ -13,7 +15,10 @@ const OrderRow = ({ order, handleDelete }) => {
         <Link to={`/orders/${order.orderId}`} state={order}>
           Details
         </Link>
-        <Button variant="link" onClick={() => handleDelete(order.orderId)}>
+        <Button variant="link" onClick={() =>
+          isTester === "test" ?
+            alert("You are with a test account, only get requests allowed") :
+            handleDelete(order.orderId)}>
           <Trash color="FireBrick" />
         </Button>
       </td>

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { createUser, updateUser } from "../../api/api"
 import { FormInput } from "../index"
 import FetchingSpinner from "../FetchingSpinner";
@@ -24,6 +25,7 @@ const schema = yup.object({
 
 const CustomerForm = ({ action, preloadedValues }) => {
   const [isFetching, setIsFetching] = useState(false);
+  const isTester = useSelector(state => state.currentUser?.firstName);
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
     defaultValues: preloadedValues
@@ -31,6 +33,10 @@ const CustomerForm = ({ action, preloadedValues }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const handleCreateUser = async (data) => {
+    if (isTester === "test") {
+      alert("You are with a test account, only get requests allowed")
+      return
+    }
     setIsFetching(true)
     const jsonFormData = JSON.stringify(data)
     try {
@@ -43,6 +49,11 @@ const CustomerForm = ({ action, preloadedValues }) => {
     }
   };
   const handleUpdateUser = async (data) => {
+    if (isTester === "test") {
+      alert("You are with a test account, only get requests allowed")
+      return
+    }
+
     setIsFetching(true)
     const jsonFormData = JSON.stringify(data)
     try {

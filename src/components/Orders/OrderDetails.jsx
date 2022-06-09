@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Button, Col, Form, Row, Spinner, Table } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { getOrderDetails, getOrderBillingDetails, updateOrder } from "../../api/api";
 import { useForm } from "react-hook-form";
 
 const OrderDetails = () => {
+  const isTester = useSelector(state => state.currentUser?.firstName);
   const [isFetching, setIsFetching] = useState(false);
   const [orderDetails, setOrderDetails] = useState();
   const [billingDetails, setBillingDetails] = useState();
@@ -69,7 +70,10 @@ const OrderDetails = () => {
                 <td>{order.orderId}</td>
                 <td>{order.orderDate.split("T")[0]}</td>
                 <td>
-                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={handleSubmit(updateOrderStatus)}>
+                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={() =>
+                    isTester === "test" ?
+                      alert("You are with a test account, only get requests allowed") :
+                      handleSubmit(updateOrderStatus)}>
                     <Form.Select
                       name="orderStatus"
                       {...register("orderStatus",

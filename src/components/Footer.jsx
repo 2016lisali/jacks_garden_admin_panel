@@ -21,7 +21,7 @@ const Footer = () => {
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         handleLogout()
       } else {
-        dispatch(loginSuccess({ userId: user.userId, isAdmin: user.isAdmin }))
+        dispatch(loginSuccess({ userId: user.userId, isAdmin: user.isAdmin, token: user.token, firstName: user.firstName }))
       }
     }
     // eslint-disable-next-line

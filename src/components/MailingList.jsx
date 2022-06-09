@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSelector } from "react-redux";
 import { Button, Container, Col, Form, FloatingLabel, Row, Table } from 'react-bootstrap';
 import { getEmailList } from '../api/api';
 import { useForm } from 'react-hook-form';
@@ -9,6 +10,7 @@ import FetchingSpinner from './FetchingSpinner';
 import SuccessDiv from './SuccessDiv';
 
 const MailingList = () => {
+  const isTester = useSelector(state => state.currentUser?.firstName);
   const [allEmails, setAllEmails] = useState();
   const [selectedEmails, setSelectedEmails] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -82,7 +84,11 @@ const MailingList = () => {
           {isSuccess ? (<>
             <SuccessDiv message="Email has been sent successfully" />
             <Button variant="outline-secondary" href="/mailinglist">Send another email</Button></>) :
-            <Form ref={form} onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column w-100 h-100">
+            <Form ref={form} onSubmit={() => {
+              isTester === "test" ?
+                alert("You are with a test account, only get requests allowed") :
+                handleSubmit(onSubmit)
+            }} className="d-flex flex-column w-100 h-100">
               <h4 className='text-center'>Email</h4>
               <FloatingLabel className="mb-3" label="Subject">
                 <Form.Control type="text"
