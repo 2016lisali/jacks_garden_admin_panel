@@ -70,10 +70,15 @@ const OrderDetails = () => {
                 <td>{order.orderId}</td>
                 <td>{order.orderDate.split("T")[0]}</td>
                 <td>
-                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={() =>
-                    isTester === "test" ?
-                      alert("You are with a test account, only get requests allowed") :
-                      handleSubmit(updateOrderStatus)}>
+                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={(e) => {
+                    e.preventDefault()
+                    if (isTester = "test") {
+                      alert("You are with a test account, only get requests allowed")
+                      return
+                    }
+                    handleSubmit(updateOrderStatus)
+                  }}
+                  >
                     <Form.Select
                       name="orderStatus"
                       {...register("orderStatus",
