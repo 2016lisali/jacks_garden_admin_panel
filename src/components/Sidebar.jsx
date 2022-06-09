@@ -1,13 +1,13 @@
 import { useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Image, ListGroup } from "react-bootstrap";
-import { Flower1, Receipt, PeopleFill, Shop, BoxArrowRight, Envelope, HouseHeartFill } from "react-bootstrap-icons";
+import { Flower1, Receipt, PeopleFill, Shop, BoxArrowRight, Envelope, HouseHeartFill, EmojiSunglasses } from "react-bootstrap-icons";
 import logo from "../assets/logo.jpg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/userReducer";
 
 const Sidebar = ({ display }) => {
-  // const [user, setUser] = useState(JSON.parse(localStorage.getItem('jg_admin'))?.user);
+  const username = useSelector(state => state.currentUser?.firstName);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -74,6 +74,7 @@ const Sidebar = ({ display }) => {
         <ListGroup.Item action variant="light" className="side-link fw-bolder" onClick={handleLogout}>
           <BoxArrowRight /> LOG OUT
         </ListGroup.Item>
+        <div className="py-3 px-2 text-center">Have a lovely day, {username === "test" ? "Stranger" : username} <EmojiSunglasses /></div>
       </ListGroup>
     </div>
   );

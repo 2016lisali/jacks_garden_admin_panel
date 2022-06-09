@@ -54,7 +54,7 @@ const Login = () => {
             <Button variant="success" type="submit">{isFetching ? <FetchingSpinner /> : "SUBMIT"}</Button>
           </div>
           <div className="border border-danger rounded-3 p-3 mt-3">
-            <p className="py-0 my-0">The site can be tested with</p>
+            <p className="py-0 my-0">The demonstration account:</p>
             <p className="py-0 my-0"><strong>Email</strong>: admintest@gmail.com</p>
             <p className="py-0 my-0"><strong>Password</strong>: Admin1234&</p>
             <p className="py-0 my-0"><strong>PS</strong>: Only get requests are allowed</p>
