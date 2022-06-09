@@ -1,6 +1,6 @@
+import { useSelector } from "react-redux";
 import { Button } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
-import { useSelector } from "react-redux";
 
 const CustomerRow = ({ customer, handleDelete }) => {
   const isTester = useSelector(state => state.currentUser?.firstName);
