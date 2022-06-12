@@ -23,11 +23,19 @@ const OrderDetails = () => {
   }
 
   const updateOrderStatus = async (data) => {
+    if (isTester === "test") {
+      alert("You are with a test account, only get requests allowed")
+      return
+    }
     setIsFetching(true)
     const formDataJson = JSON.stringify(data)
     try {
-      await updateOrder(order.orderId, formDataJson)
-      setIsFetching(false)
+      const res = await updateOrder(order.orderId, formDataJson)
+      if (res.status === 200) {
+        setIsFetching(false)
+      } else {
+        throw new Error("something went wrong, please try later")
+      }
     } catch (error) {
       setIsFetching(false)
       alert(error)
@@ -35,7 +43,6 @@ const OrderDetails = () => {
   }
   // console.log(order);
   useEffect(() => {
-    console.log("get order details useEffect");
     const getOrder = async (orderId) => {
       try {
         const result = await getOrderDetails(orderId)
@@ -47,8 +54,7 @@ const OrderDetails = () => {
       }
     }
     getOrder(order.orderId)
-  }, [order.orderId])
-
+  }, [order.orderId, orderDetails?.orderStatus])
   return (
     <div className='order-details mt-5 bg-white shadow p-3'>
       <div className='d-flex justify-content-between align-items-center mb-3'>
@@ -70,27 +76,23 @@ const OrderDetails = () => {
                 <td>{order.orderId}</td>
                 <td>{order.orderDate.split("T")[0]}</td>
                 <td>
-                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={(e) => {
-                    e.preventDefault()
-                    if (isTester === "test") {
-                      alert("You are with a test account, only get requests allowed")
-                      return
-                    }
-                    handleSubmit(updateOrderStatus)
-                  }}
-                  >
+                  <Form className="d-flex align-items-center flex-column flex-md-row" onSubmit={handleSubmit(updateOrderStatus)}>
                     <Form.Select
                       name="orderStatus"
                       {...register("orderStatus",
                         { required: "input cannot be null" })} >
-                      <option value={order.orderStatus}>{order.orderStatus}</option>
-                      {["Paid", "Pending", "Completed"].map(item =>
-                        item !== order.orderStatus && <option value={item}>{item}</option>)}
+                      <option value={orderDetails && orderDetails[0].orderStatus}>{orderDetails && orderDetails[0].orderStatus}</option>
+                      {["Paid", "Pending", "Completed"].map((item, index) =>
+                        item !== (orderDetails && orderDetails[0].orderStatus) && <option value={item} key={index}>{item}</option>)}
                     </Form.Select>
-                    <Button variant="success" type="submit" className="rounded-pill ms-2 py-0 px-2 mt-2 mt-md-0">{isFetching ? <Spinner animation="border" variant="light" role="status" size="sm" /> : <span className="small">UPDATE</span>}</Button>
+                    <Button variant="success" type="submit" className="rounded-pill ms-2 py-0 px-2 mt-2 mt-md-0">
+                      {isFetching ?
+                        <Spinner animation="border" variant="light" role="status" size="sm" /> :
+                        <span className="small">UPDATE</span>}
+                    </Button>
                   </Form>
                 </td>
-                <td className='d-none d-md-table-cell'>{order.localPickup === 1 ? "Yes" : "No"}</td>
+                <td className='d-none d-md-table-cell'>{orderDetails?.localPickup === 1 ? "Yes" : "No"}</td>
               </tr>
             </tbody>
           </Table>

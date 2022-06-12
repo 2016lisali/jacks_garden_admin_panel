@@ -19,7 +19,6 @@ const Sidebar = ({ display }) => {
 
   useEffect(() => {
     const currentPage = location.pathname.split('/')[1];
-    console.log(currentPage);
     switch (currentPage) {
       case "":
         homeLinkElement.current.classList.add("active");
