@@ -4,7 +4,6 @@ export const login = async (formData, dispatch) => {
   dispatch(loginStart());
   try {
     const res = await api.login(formData);
-    console.log(res);
     const { userId, isAdmin, token, firstName } = res?.data;
     if (isAdmin === 1) {
       dispatch(loginSuccess({ userId, isAdmin, token, firstName }))
