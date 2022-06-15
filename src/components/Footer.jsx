@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import decode from 'jwt-decode';
 import { useNavigate, useLocation } from "react-router-dom";
 import { loginSuccess, logout } from '../redux/userReducer';
 import { useDispatch } from 'react-redux';
@@ -14,18 +13,26 @@ const Footer = () => {
     navigate("/login");
   }
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('jg_admin'))?.user;
-    const token = user?.token;
-    if (token) {
-      const decodedToken = decode(token)
-      if (decodedToken.exp * 1000 < new Date().getTime()) {
-        handleLogout()
+    let user = JSON.parse(localStorage.getItem('jg_admin'))?.user;
+    if (user) {
+      if (user.expires > new Date().toISOString()) {
+        dispatch(loginSuccess({ userId: user.userId, isAdmin: user.isAdmin, firstName: user.firstName }))
       } else {
-        decodedToken.isAdmin === 1
-          ? dispatch(loginSuccess({ userId: user.userId, isAdmin: user.isAdmin, token: user.token, firstName: user.firstName }))
-          : handleLogout()
+        handleLogout()
       }
     }
+
+    // const token = user?.token;
+    // if (token) {
+    //   const decodedToken = decode(token)
+    //   if (decodedToken.exp * 1000 < new Date().getTime()) {
+    //     handleLogout()
+    //   } else {
+    //     decodedToken.isAdmin === 1
+    //       ? dispatch(loginSuccess({ userId: user.userId, isAdmin: user.isAdmin, token: user.token, firstName: user.firstName }))
+    //       : handleLogout()
+    //   }
+    // }
     // eslint-disable-next-line
   }, [location]);
   return (

@@ -2,20 +2,20 @@ import axios from "axios";
 
 //connect to live server
 const BASE_URL = process.env.REACT_APP_BASE_URL_CLOUD;
-
 // connect to local server
 // const BASE_URL = process.env.REACT_APP_BASE_URL_LOCAL;
 const API = axios.create({
   baseURL: BASE_URL + "/api",
   headers: { 'Content-Type': "application/json" },
+  withCredentials: true
 })
 
-API.interceptors.request.use(req => {
-  if (localStorage.getItem('jg_admin')) {
-    req.headers.token = `Bearer ${JSON.parse(localStorage.getItem('jg_admin')).user.token}`;
-  }
-  return req;
-})
+// API.interceptors.request.use(req => {
+//   if (localStorage.getItem('jg_admin')) {
+//     req.headers.token = `Bearer ${JSON.parse(localStorage.getItem('jg_admin')).user.token}`;
+//   }
+//   return req;
+// })
 
 //Auth API
 export const login = (formData) => API.post("/users/login", formData);
@@ -53,3 +53,6 @@ export const getOrderBillingDetails = (orderId) => API.get(`/orders/billings/${o
 export const getOrderSummary = () => API.get("/orders/summary");
 export const updateOrder = (orderId, formData) => API.patch(`/orders/${orderId}`, formData)
 export const deleteOrderById = (orderId) => API.delete(`/orders/${orderId}`);
+
+// Cookies API
+export const deleteCookie = () => API.delete("/cookies")
