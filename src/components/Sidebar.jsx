@@ -5,6 +5,7 @@ import { Flower1, Receipt, PeopleFill, Shop, BoxArrowRight, Envelope, HouseHeart
 import logo from "../assets/logo.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/userReducer";
+import { deleteCookie } from "../api/api";
 
 const Sidebar = ({ display }) => {
   const username = useSelector(state => state.currentUser?.firstName);
@@ -44,9 +45,15 @@ const Sidebar = ({ display }) => {
     }
   }, [location])
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(logout())
     navigate("/")
+    try {
+      const res = await deleteCookie()
+      console.log("delete cookie res", res);
+    } catch (error) {
+      console.log("delete cookie error", error);
+    }
   }
   return (
     <div className={`sidebar d-${display} d-lg-flex flex-column bg-white shadow`}>

@@ -3,14 +3,21 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { loginSuccess, logout } from '../redux/userReducer';
 import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap';
+import { deleteCookie } from "../api/api";
 
 const Footer = () => {
   const location = useLocation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(logout());
     navigate("/login");
+    try {
+      const res = await deleteCookie()
+      console.log("delete cookie res", res);
+    } catch (error) {
+      console.log("delete cookie error", error);
+    }
   }
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem('jg_admin'))?.user;
