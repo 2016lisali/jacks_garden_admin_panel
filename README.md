@@ -1,7 +1,13 @@
-# Jack's Garden Admin Panel
+<p align="center">
+  <a href="https://jacksgardenadmin.netlify.app/"><img src="https://github.com/2016lisali/lisas_portfolio/blob/main/public/assets/jacks_garden_admin_panel_responsive.jpg"/></a>
+</p>
+<h1 align="center">
+  Jack's Garden Admin Panel
+</h1>
 
-Jack's Garden Admin Panel was created with react and react-bootstrap. It is the admin dashboard of Jack's Garden Online Shop.
-The backend is served on [https://jacks-garden-server.herokuapp.com](https://jacks-garden-server.herokuapp.com)
+<h3 align="center">
+ Admin Panel of Jack's Garden Online Store    created with react and react-bootstrap.
+</h3>
 
 Via the admin panel, the admin can:
 
@@ -11,9 +17,16 @@ Via the admin panel, the admin can:
 - read/delete orders and update order status.
 - read mailing list, send emails to customers
 
-You can find the backend code of this project on [https://github.com/2016lisali/jacks_garden_server](https://github.com/2016lisali/jacks_garden_server) and the online store code on [https://github.com/2016lisali/jacks_garden](https://github.com/2016lisali/jacks_garden)
+**Backend**: [https://github.com/2016lisali/jacks_garden_server](https://github.com/2016lisali/jacks_garden_server)
+**Online Store** [https://github.com/2016lisali/jacks_garden](https://github.com/2016lisali/jacks_garden)
 
-![project image](https://github.com/2016lisali/lisas_portfolio/blob/main/public/assets/jacks_garden_admin_panel_responsive.jpg)
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Try it
+
+You can find the demo [here](https://jacksgardenadmin.netlify.app/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Features
 
@@ -38,12 +51,6 @@ You can find the backend code of this project on [https://github.com/2016lisali/
 - yup
 - axios
 - bcrypt
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Try it
-
-You can find the demo [here](https://jacksgardenadmin.netlify.app/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
