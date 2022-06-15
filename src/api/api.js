@@ -1,13 +1,13 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true
 //connect to live server
 const BASE_URL = process.env.REACT_APP_BASE_URL_CLOUD;
 // connect to local server
 // const BASE_URL = process.env.REACT_APP_BASE_URL_LOCAL;
 const API = axios.create({
   baseURL: BASE_URL + "/api",
-  headers: { 'Content-Type': "application/json" },
-  withCredentials: true
+  headers: { 'Content-Type': "application/json" }
 })
 
 // API.interceptors.request.use(req => {
