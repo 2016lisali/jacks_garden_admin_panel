@@ -2,7 +2,7 @@
   <a href="https://jacksgardenadmin.netlify.app/"><img src="https://github.com/2016lisali/lisas_portfolio/blob/main/public/assets/jacks_garden_admin_panel_responsive.jpg"/></a>
 </p>
 <h1 align="center">
-  Jack's Garden Admin Panel
+  🪴Jack's Garden Admin Panel
 </h1>
 
 <h3 align="center">

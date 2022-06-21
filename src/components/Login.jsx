@@ -57,7 +57,7 @@ const Login = () => {
             <p className="py-0 my-0">The demonstration account:</p>
             <p className="py-0 my-0"><strong>Email</strong>: admintest@gmail.com</p>
             <p className="py-0 my-0"><strong>Password</strong>: Admin1234&</p>
-            <p className="py-0 my-0"><strong>PS</strong>: Only get requests are allowed</p>
+            <p className="py-0 my-0"><strong>PS</strong>: Only get requests allowed for demonstration account</p>
           </div>
         </Form>}
 
