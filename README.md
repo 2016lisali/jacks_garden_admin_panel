@@ -18,7 +18,8 @@ Via the admin panel, the admin can:
 - read mailing list, send emails to customers
 
 **Backend**: [https://github.com/2016lisali/jacks_garden_server](https://github.com/2016lisali/jacks_garden_server)
-**Online Store** [https://github.com/2016lisali/jacks_garden](https://github.com/2016lisali/jacks_garden)
+
+**Online Store**: [https://github.com/2016lisali/jacks_garden](https://github.com/2016lisali/jacks_garden)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -66,7 +67,7 @@ You can find the demo [here](https://jacksgardenadmin.netlify.app/)
    ```sh
    npm install
    ```
-3. 3. Create a `.env` file in root folder and enter following fields
+3. Create a `.env` file in root folder and enter following fields
 
    ```env
    PORT = YOUR_PORT_NUMBER
