@@ -3,8 +3,7 @@ import axios from "axios";
 axios.defaults.withCredentials = true
 //connect to live server
 const BASE_URL = process.env.REACT_APP_BASE_URL_CLOUD;
-// connect to local server
-// const BASE_URL = process.env.REACT_APP_BASE_URL_LOCAL;
+
 const API = axios.create({
   baseURL: BASE_URL + "/api",
   headers: { 'Content-Type': "application/json" }
@@ -28,7 +27,6 @@ export const createProduct = (formData) => API.post("/products", formData);
 export const updateProduct = (formData) => API.patch(`/products/${formData.productId}`, formData);
 export const getProductBySearch = (productname, category) => API.get(`/products/search?productname=${productname}&category=${category}`);
 export const deleteProductById = (productId) => API.delete(`/products/${productId}`);
-
 
 // upload product Img
 export const uploadImg = (img) => API.post("/uploadfiles", img, {
