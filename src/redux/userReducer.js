@@ -6,7 +6,6 @@ const userSlice = createSlice({
     currentUser: null,
     isFetching: false,
     isSuccess: false,
-    // errorMsg: null
   },
   reducers: {
     loginStart: (state) => {
@@ -16,12 +15,10 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = true;
       state.currentUser = action.payload;
-      // state.errorMsg = null;
     },
     loginFailure: (state) => {
       state.isFetching = false;
       state.isSuccess = false;
-      // state.errorMsg = action.payload;
     },
     logout: (state) => {
       localStorage.removeItem("jg_admin");

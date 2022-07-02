@@ -1,10 +1,10 @@
 import { Pagination } from "react-bootstrap"
 
 const Pagi = ({ pages, currentPage, setCurrentPage }) => {
-  let pageNumbers = []
+  let pageNumbers = [];
   for (let i = 1; i <= pages; i++) {
     pageNumbers.push(i)
-  }
+  };
   return (
     <Pagination>
       <Pagination.Prev onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)} />

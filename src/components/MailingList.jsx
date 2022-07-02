@@ -4,10 +4,7 @@ import { Button, Container, Col, Form, FloatingLabel, Row, Table } from 'react-b
 import { getEmailList } from '../api/api';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
-import Pagi from './Pagi';
-import IsFetchingModal from './IsFetchingModal';
-import FetchingSpinner from './FetchingSpinner';
-import SuccessDiv from './SuccessDiv';
+import { FetchingSpinner, IsFetchingModal, Pagi, SuccessDiv } from './index';
 
 const MailingList = () => {
   const isTester = useSelector(state => state.currentUser?.firstName);
@@ -118,7 +115,6 @@ const MailingList = () => {
               <span className="mt-1 text-danger">{errors.recipient && "Please choose recipient"}</span>
               <Button variant="secondary" type="submit" className="my-3">{isFetching ? <FetchingSpinner /> : <span>SEND</span>}</Button>
             </Form>}
-
         </Col>
       </Row>
     </Container>

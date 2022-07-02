@@ -2,16 +2,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Container, Form, FloatingLabel } from "react-bootstrap";
 import { login } from "../actions/userAction";
 import { useForm } from "react-hook-form";
-import SuccessDiv from "./SuccessDiv";
-import FetchingSpinner from "./FetchingSpinner";
+import { FetchingSpinner, SuccessDiv } from "./index";
 
 const Login = () => {
   const isSuccess = useSelector(state => state.isSuccess);
   const isFetching = useSelector(state => state.isFetching);
-  // const errorMsg = useSelector(state => state.errorMsg);
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm();
-
   const handleLogin = (data) => {
     const formDataJSON = JSON.stringify(data)
     login(formDataJSON, dispatch)

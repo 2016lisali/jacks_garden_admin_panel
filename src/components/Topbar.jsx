@@ -3,7 +3,6 @@ import { Navbar, Container, Offcanvas } from 'react-bootstrap';
 import { List } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
-// import { Link } from 'react-router-dom';
 
 const Topbar = () => {
   const [show, setShow] = useState(false);
@@ -34,4 +33,4 @@ const Topbar = () => {
   )
 }
 
-export default Topbar
+export default Topbar;

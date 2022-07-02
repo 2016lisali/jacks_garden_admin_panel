@@ -28,18 +28,6 @@ const Footer = () => {
         handleLogout()
       }
     }
-
-    // const token = user?.token;
-    // if (token) {
-    //   const decodedToken = decode(token)
-    //   if (decodedToken.exp * 1000 < new Date().getTime()) {
-    //     handleLogout()
-    //   } else {
-    //     decodedToken.isAdmin === 1
-    //       ? dispatch(loginSuccess({ userId: user.userId, isAdmin: user.isAdmin, token: user.token, firstName: user.firstName }))
-    //       : handleLogout()
-    //   }
-    // }
     // eslint-disable-next-line
   }, [location]);
   return (
