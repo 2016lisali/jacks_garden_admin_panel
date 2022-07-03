@@ -17,6 +17,7 @@ export { default as Products } from './Products/Products';
 export { default as ProductForm } from './Products/ProductForm';
 export { default as ProductUpdateForm } from './Products/ProductUpdateForm';
 export { default as Sidebar } from './Sidebar';
+export { default as SuccessDiv } from './SuccessDiv';
 export { default as Topbar } from './Topbar';
 
 
