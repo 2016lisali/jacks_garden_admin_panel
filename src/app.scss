@@ -1,83 +1,84 @@
 #deleteButton {
-  &:hover {
-    transform: scale(1.1);
-  }
-  &:active {
-    transform: scale(0.9);
-  }
+    &:hover {
+        transform: scale(1.1);
+    }
+    &:active {
+        transform: scale(0.9);
+    }
 }
 
 .customer {
-  max-width: 100vw;
-  #emailBar {
-    word-wrap: break-word;
-    word-break:break-all;
-  }
+    max-width: 100vw;
+    #emailBar {
+        word-wrap: break-word;
+        word-break: break-all;
+    }
 }
 
 .footer-container {
-  font-size: 13px;
+    font-size: 13px;
 }
 
 .isFetching-modal {
-  background-color: rgba(0,0,0,0.5);
-  z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
 }
 
 .login-container {
-  height: calc(100vh - 84px);
-  .login-form {
-  max-width: 450px;
-  width: 95%;
-  }
+    height: calc(100vh - 84px);
+    .login-form {
+        max-width: 450px;
+        width: 95%;
+    }
 }
 
 .order-details {
-  select {
-    width: 80px;
-  }
+    select {
+        width: 80px;
+    }
 }
 
 .pagination {
-  .page-item {
-    .page-link {
-      color: #198754 !important;
+    .page-item {
+        .page-link {
+            color: #198754 !important;
+        }
+        &.active {
+            .page-link {
+                color: white !important;
+                background-color: #198754 !important;
+            }
+        }
     }
-    &.active {
-      .page-link {
-        color: white !important;
-        background-color: #198754 !important;
-      }
-    }
-  }  
 }
 
 .register-form {
-  max-width: 700px;
+    max-width: 700px;
 }
 
 .sidebar {
-  min-height: 100vh;
-  padding-top: 30px;
-  width: 240px;
-  img {
-    width: 70px;
-    height: 70px;
-    margin: 10px;
-  }
-  .list-group {
-    button, a {
-      padding: 16px 8px;
-      svg {
-        margin-right: 8px;
-        font-size: 20px;
-        color: #198754;
-      }
+    min-height: 100vh;
+    padding-top: 30px;
+    width: 240px;
+    img {
+        width: 70px;
+        height: 70px;
+        margin: 10px;
     }
-  }
-  .list-group-item-light.list-group-item-action.active {
-    color: #fff;
-    background-color: #b3b3b3;;
-    border-color: #b3b3b3;
-}
+    .list-group {
+        button,
+        a {
+            padding: 16px 8px;
+            svg {
+                margin-right: 8px;
+                font-size: 20px;
+                color: #198754;
+            }
+        }
+    }
+    .list-group-item-light.list-group-item-action.active {
+        color: #fff;
+        background-color: #b3b3b3;
+        border-color: #b3b3b3;
+    }
 }
